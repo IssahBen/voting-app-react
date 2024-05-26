@@ -1,9 +1,42 @@
 import { useState } from "react";
 import { useData } from "../../Context/DataContext";
+import { useNavigate } from "react-router-dom";
 function Signup({ setStatus }) {
   const [passwordConfirmation, setPasswordConfirmation] = useState();
-  const { email, password, setEmail, setPassword, role, setRole } = useData();
-  function handleSignUp() {}
+  const navigate = useNavigate();
+  const {
+    email,
+    password,
+    setEmail,
+    setPassword,
+    role,
+    setRole,
+    firstName,
+    lastName,
+    setFirstName,
+    setLastName,
+    createUser,
+  } = useData();
+  async function handleSignUp(e) {
+    e.preventDefault();
+    const obj = {
+      user: {
+        email: email,
+        password: password,
+        password_confirmation: passwordConfirmation,
+        first_name: firstName,
+        last_name: lastName,
+        role: role,
+      },
+    };
+    console.log(obj);
+    const status = await createUser(obj);
+    console.log(status);
+    console.log(role);
+
+    if (status === "voter") navigate("/voter");
+    if (status === "official") navigate("/admin");
+  }
   return (
     <div className="flex w-full h-full justify-center items-center">
       <div className="px-10 flex w-full lg:w-1/2 justify-center items-center shadow bg-white rounded-[8px]">
@@ -17,10 +50,10 @@ function Signup({ setStatus }) {
                 Voter/Election Official
               </p>
             </div>
-            <form className="mt-8 space-y-6" onSubmit={handleSignUp}>
+            <form className="mt-5 space-y-4" onSubmit={handleSignUp}>
               <input type="hidden" name="remember" value="true" />
               <div className="relative">
-                <div className="absolute right-0 mt-4">
+                <div className="absolute right-0 mt-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className={`h-6 w-6 ${
@@ -33,9 +66,9 @@ function Signup({ setStatus }) {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     ></path>
                   </svg>
@@ -47,12 +80,38 @@ function Signup({ setStatus }) {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                  className="w-full text-base py-1 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                   type="email"
                   placeholder="mail@gmail.com"
                 />
               </div>
-              <div className="mt-8 content-center">
+              <div className="mt-5 content-center">
+                <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
+                  First Name
+                </label>
+                <input
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full content-center text-base py-1 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                  type="text"
+                  placeholder="First Name"
+                />
+              </div>
+              <div className="mt-5 content-center">
+                <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
+                  Last Name
+                </label>
+                <input
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full content-center text-base py-1 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                  type="text"
+                  placeholder="Last Name"
+                />
+              </div>
+              <div className="mt-5 content-center">
                 <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
                   Password
                 </label>
@@ -60,12 +119,12 @@ function Signup({ setStatus }) {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                  className="w-full content-center text-base py-1 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                   type="password"
                   placeholder="Enter your password"
                 />
               </div>
-              <div className="mt-8 content-center">
+              <div className="mt-5 content-center">
                 <label
                   className={`text-sm  pulse font-bold ${
                     password !== passwordConfirmation
@@ -79,19 +138,19 @@ function Signup({ setStatus }) {
                   required
                   value={passwordConfirmation}
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
-                  className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                  className="w-full content-center text-base py-1 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                   type="password"
                   placeholder="Confirm password"
                 />
               </div>
-              <div className="mt-8 content-center">
+              <div className="mt-5 content-center">
                 <label className="text-sm  pulse font-bold tracking-wide">
                   Role
                 </label>
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="  divide-y w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                  className="  divide-y w-full content-center text-base py-1 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                 >
                   <option value="voter">Voter</option>
                   <option value="official">Election official</option>

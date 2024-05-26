@@ -1,7 +1,23 @@
+import { useNavigate } from "react-router-dom";
 import { useData } from "../../Context/DataContext";
 function Login({ setStatus }) {
-  const { email, password, setEmail, setPassword } = useData();
-  function handleLogin() {}
+  const { email, password, setEmail, setPassword, Login, role } = useData();
+  const navigate = useNavigate();
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const obj = {
+      user: {
+        email: email,
+        password: password,
+      },
+    };
+    const status = await Login(obj);
+    console.log(status);
+
+    if (status === "voter") navigate("/voter");
+    if (status === "official") navigate("/admin");
+  }
   return (
     <div className="flex w-full h-full justify-center items-center">
       <div className="px-10 flex w-full lg:w-1/2 justify-center items-center shadow bg-white rounded-[8px]">
@@ -24,9 +40,9 @@ function Login({ setStatus }) {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     ></path>
                   </svg>

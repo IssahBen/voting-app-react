@@ -1,5 +1,5 @@
 function Ballots() {
-  return <div></div>;
+  return <div className="bg-red">boys</div>;
 }
 
 export default Ballots;

@@ -8,6 +8,7 @@ import Signup from "./Signup";
 
 function Home() {
   const [status, setStatus] = useState("home");
+
   return (
     <div className="w-screen h-screen bg-blue-500 flex flex-col home bg-no-repeat bg-cover">
       <Navbar setStatus={setStatus} status={status} />
