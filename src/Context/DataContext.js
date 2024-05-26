@@ -16,7 +16,7 @@ function DataProvider({ children }) {
   async function createUser(obj) {
     try {
       setIsLoading(true);
-      const res = await fetch(`http://localhost:3000/api/v1/signup`, {
+      const res = await fetch(`http://10.0.0.121:3000//api/v1/signup`, {
         method: "Post",
         body: JSON.stringify(obj),
         headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ function DataProvider({ children }) {
   }
   async function destroySession() {
     try {
-      const res = await fetch(`http://localhost:3000/api/v1/logout`, {
+      const res = await fetch(`http://10.0.0.121:3000/api/v1/logout`, {
         method: "delete",
         body: JSON.stringify(),
         headers: {
@@ -71,7 +71,7 @@ function DataProvider({ children }) {
   async function Login(obj) {
     try {
       setIsLoading(true);
-      const res = await fetch(`http://localhost:3000/api/v1/login`, {
+      const res = await fetch(`http://10.0.0.121:3000/api/v1/login`, {
         method: "Post",
         body: JSON.stringify(obj),
         headers: { "Content-Type": "application/json" },
