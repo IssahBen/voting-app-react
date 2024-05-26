@@ -56,7 +56,7 @@
 }
 
 .gelatine {
-  animation: gelatine 2s infinite;
+  animation: gelatine 10s infinite;
 }
 @keyframes gelatine {
   from,
@@ -122,5 +122,17 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.flash {
+  animation: flash 5000ms ease infinite alternate;
+}
+@keyframes flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

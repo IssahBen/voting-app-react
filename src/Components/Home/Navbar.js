@@ -7,7 +7,7 @@ function Navbar({ status, setStatus }) {
   return (
     <div className="flex w-full  bg-white justify-between  items-center px-5 py-2">
       <h1
-        className="font-bold text-4xl gelatine  text-yellow-600 hover:cursor-pointer"
+        className="font-bold text-4xl   text-yellow-600 hover:cursor-pointer"
         onClick={() => setStatus("home")}
       >
         WeVote
