@@ -2,12 +2,12 @@ function Intro({ setStatus }) {
   return (
     
     <div className="flex flex-col items-center p-8 space-y-10 mt-24">
-     <div className="lg:mx-52 flex md:justify-start justify-center py-2  opacity-80  ">
-        <div className="bg-white flex  flex-col items-center py-5 px-8   border-[5px]  border-black border-t-0  border-b-0 rounded-lg">
-          <h1 className="gelatine   font-extrabold text-4xl  text-black">
+     <div className="lg:mx-52 flex md:justify-start  justify-center py-2    ">
+        <div className=" flex  flex-col items-center py-5 px-8 bg-white opacity-75     rounded-lg">
+          <h1 className="gelatine   font-extrabold text-5xl  text-black">
             Welcome To WeVote
           </h1>
-          <p className="tracking-wide mt-2 text-center md:w-1/2">
+          <p className="tracking-wide mt-2 text-center   text-md md:w-1/2">
             WeVote is a cutting-edge voting app designed to streamline and
             secure the voting process for elections, polls, and organizational
             decisions. With WeVote, participating in democracy has never been
