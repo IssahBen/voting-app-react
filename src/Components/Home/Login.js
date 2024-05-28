@@ -20,7 +20,7 @@ function Login({ setStatus }) {
   }
   return (
     <div className="flex w-full h-full justify-center items-center">
-      <div className="px-10 flex w-full lg:w-1/2 justify-center items-center shadow bg-white rounded-[8px]">
+      <div className="px-10 flex w-full md:mx-24 lg:w-1/2 justify-center items-center  bg-white rounded-[8px]">
         <div className="relative flex items-center">
           <div className="w-full z-10">
             <div className="text-center">
@@ -76,7 +76,7 @@ function Login({ setStatus }) {
               <div>
                 <button
                   type="submit"
-                  className="w-full  flip flex justify-center shadow  bg-red-500 text-gray-100 p-1 mb-5  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300"
+                  className="w-full  flip flex justify-center   bg-red-700 text-gray-100 p-1 mb-5  rounded-xl tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300"
                 >
                   Login
                 </button>

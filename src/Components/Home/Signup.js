@@ -39,16 +39,13 @@ function Signup({ setStatus }) {
   }
   return (
     <div className="flex w-full h-full justify-center items-center">
-      <div className="px-10 flex w-full lg:w-1/2 justify-center items-center shadow bg-white rounded-[8px]">
+      <div className="px-10 flex w-full md:mx-24 opacity-80 lg:w-1/2 justify-center items-center s bg-white rounded-[8px]">
         <div className="relative flex items-center">
           <div className="w-full z-10">
             <div className="text-center">
               <h2 className=" pulse mt-6 text-3xl font-bold text-gray-900">
                 Sign Up Now
               </h2>
-              <p className="mt-5 text-md text-gray-600">
-                Voter/Election Official
-              </p>
             </div>
             <form className="mt-5 space-y-4" onSubmit={handleSignUp}>
               <input type="hidden" name="remember" value="true" />
@@ -85,7 +82,7 @@ function Signup({ setStatus }) {
                   placeholder="mail@gmail.com"
                 />
               </div>
-              <div className="mt-5 content-center">
+              <div className="mt-2 content-center">
                 <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
                   First Name
                 </label>
@@ -98,7 +95,7 @@ function Signup({ setStatus }) {
                   placeholder="First Name"
                 />
               </div>
-              <div className="mt-5 content-center">
+              <div className="mt-2 content-center">
                 <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
                   Last Name
                 </label>
@@ -111,7 +108,7 @@ function Signup({ setStatus }) {
                   placeholder="Last Name"
                 />
               </div>
-              <div className="mt-5 content-center">
+              <div className="mt-2 content-center">
                 <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
                   Password
                 </label>
@@ -124,7 +121,7 @@ function Signup({ setStatus }) {
                   placeholder="Enter your password"
                 />
               </div>
-              <div className="mt-5 content-center">
+              <div className="mt-2 content-center">
                 <label
                   className={`text-sm  pulse font-bold ${
                     password !== passwordConfirmation
@@ -143,7 +140,7 @@ function Signup({ setStatus }) {
                   placeholder="Confirm password"
                 />
               </div>
-              <div className="mt-5 content-center">
+              <div className="mt-2 content-center">
                 <label className="text-sm  pulse font-bold tracking-wide">
                   Role
                 </label>
@@ -162,11 +159,11 @@ function Signup({ setStatus }) {
               <div>
                 <button
                   type="submit"
-                  className={`w-full  flip flex justify-center shadow  ${
+                  className={`w-full  flip flex justify-center   ${
                     email && password === passwordConfirmation
                       ? "bg-green-500 "
-                      : "bg-red-500 "
-                  } text-gray-100 p-1 mb-5  rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300`}
+                      : "bg-red-700 "
+                  } text-gray-100 p-1 mb-5  rounded-xl tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600  cursor-pointer transition ease-in duration-300`}
                 >
                   Register
                 </button>
@@ -178,7 +175,7 @@ function Signup({ setStatus }) {
 
             <button
               onClick={() => setStatus("login")}
-              className=" gelatine flash text-2xl text-green-500 font-bold tracking-wide hover:text-indigo-500 no-underline hover:underline cursor-pointer transition ease-in duration-300"
+              className=" gelatine shake text-2xl text-green-500 font-bold tracking-wide hover:text-indigo-500 no-underline hover:underline cursor-pointer transition ease-in duration-300"
             >
               Login
             </button>
