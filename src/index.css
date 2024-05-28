@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 .home {
-  background-image: url("images/bg.jpg");
+  background-image: url("images/newbg.jpg");
+}
+.admin {
+  background-image: url("images/newbg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .hamburger {
   cursor: pointer;
@@ -12,8 +17,8 @@
   position: relative;
 }
 .shadow {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(236, 191, 9,  1) 0px 30px 60px -12px inset,
+    rgba(236, 191, 9, 0.8) 0px 18px 36px -18px inset;
 }
 .hamburger-top,
 .hamburger-middle,
@@ -56,7 +61,7 @@
 }
 
 .gelatine {
-  animation: gelatine 10s infinite;
+  animation: gelatine 5s infinite;
 }
 @keyframes gelatine {
   from,
@@ -135,4 +140,20 @@
   to {
     opacity: 0;
   }
+}
+.pulse {
+  animation: pulse 5s infinite ease-in-out alternate;
+}
+@keyframes pulse {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.arrow{
+  border-top-right-radius: 100px 20px;
+  border-bottom-right-radius: 100px 20px;
 }

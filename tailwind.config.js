@@ -8,5 +8,5 @@ module.exports = {
       sans: ["Poetsen One", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins:[]
 };

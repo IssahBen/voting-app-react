@@ -48,13 +48,13 @@ export default function MobileMenu({ status, setStatus }) {
         className="absolute top-0 right-0 hidden flex-col z-4  w-1/2 h-72 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
       >
         <NavLink
-          to="admin"
+          to="/admin"
           className={`hover:text-pink-500 hover:shake font-mono btn tracking-widest`}
         >
           Ballots
         </NavLink>
         <NavLink
-          href="#about"
+          to="/admin/create"
           className={`hover:text-pink-500 hover:shake font-mono btn tracking-widest`}
         >
           Create Ballot
