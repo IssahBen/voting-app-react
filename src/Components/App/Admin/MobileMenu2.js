@@ -30,7 +30,7 @@ export default function MobileMenu({ status, setStatus }) {
     }
   }
   return (
-    <div className="md:hidden">
+    <div className="md:hidden z-10">
       <button
         id="menu-btn"
         type="button"
@@ -45,7 +45,7 @@ export default function MobileMenu({ status, setStatus }) {
       <div
         id="menu"
         ref={mobileMenu}
-        className="absolute top-0 right-0 hidden flex-col z-4  w-1/2 h-72 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
+        className="absolute top-0 right-0 hidden flex-col z-4  w-1/2 h-52 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
       >
         <NavLink
           to="/admin"
@@ -53,12 +53,7 @@ export default function MobileMenu({ status, setStatus }) {
         >
           Ballots
         </NavLink>
-        <NavLink
-          to="/admin/create"
-          className={`hover:text-pink-500 hover:shake font-mono btn tracking-widest`}
-        >
-          Create Ballot
-        </NavLink>
+
         <a
           onClick={handleLogout}
           className={`hover:text-pink-500 hover:shake  font-mono btn tracking-widest hover:cursor-pointer`}

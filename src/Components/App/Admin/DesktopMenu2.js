@@ -22,12 +22,7 @@ export default function DesktopMenu({ status, setStatus }) {
         </NavLink>
         <div className="mx-2 group-hover:border-b group-hover:border-blue-50 group-hover:shake"></div>
       </div>
-      <div className="group hover:btn">
-        <NavLink to="create" className={` hover:text-pink-500 `}>
-          Create Ballots
-        </NavLink>
-        <div className="mx-2 group-hover:border-b group-hover:border-blue-50 group-hover:shake"></div>
-      </div>
+     
       <div className="group hover:btn">
         <a onClick={handleLogout} className={`hover:text-pink-500 `}>
           logout

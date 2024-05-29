@@ -9,6 +9,9 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.color{
+  background-color: rgb(128,61,59);
+}
 .hamburger {
   cursor: pointer;
   width: 24px;
@@ -16,10 +19,7 @@
   transition: all 0.25s;
   position: relative;
 }
-.shadow {
-  box-shadow: rgba(236, 191, 9,  1) 0px 30px 60px -12px inset,
-    rgba(236, 191, 9, 0.8) 0px 18px 36px -18px inset;
-}
+
 .hamburger-top,
 .hamburger-middle,
 .hamburger-bottom {
@@ -131,7 +131,7 @@
 }
 
 .flash {
-  animation: flash 5000ms ease infinite alternate;
+  animation: flash 1000ms ease infinite alternate;
 }
 @keyframes flash {
   from {
@@ -149,7 +149,7 @@
     transform: scale(0.8);
   }
   to {
-    transform: scale(1.2);
+    transform: scale(0.9);
   }
 }
 

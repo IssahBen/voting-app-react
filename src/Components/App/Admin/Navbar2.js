@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import DesktopMenu from "./DesktopMenu2";
 import MobileMenu from "./MobileMenu2";
+import Greeting from "./Greeting";
 
 function Navbar({ status, setStatus }) {
   return (
@@ -11,6 +12,7 @@ function Navbar({ status, setStatus }) {
       >
         WeVote
       </NavLink>
+      <Greeting/>
       <DesktopMenu status={status} setStatus={setStatus} />
       <MobileMenu status={status} setStatus={setStatus} />
     </div>

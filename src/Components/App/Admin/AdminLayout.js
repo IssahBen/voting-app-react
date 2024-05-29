@@ -18,9 +18,9 @@ function AdminLayout() {
     setLastName(userObj.last_name);}
   }, []);
   return (
-    <div className="w-screen h-screen flex flex-col admin ">
+    <div className="w-screen   h-screen overflow-scroll flex flex-col  admin ">
       <Navbar status={status} setStatus={setStatus} />
-      <Greeting/>
+     
       <Outlet/>
     </div>
   );

@@ -11,17 +11,19 @@ function DataProvider({ children }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [currentBallot, setCurrentBallot] = useState("");
 
   const loggedIn = token === "" ? false : true;
   useEffect(function () {
-    if(localStorage.getItem("token") && localStorage.getItem("user")){
-    const token = localStorage.getItem("token");
-    const userObj = JSON.parse(localStorage.getItem("user"));
-    setToken(token);
-    setEmail(userObj.email);
-    setRole(userObj.role);
-    setFirstName(userObj.first_name);
-    setLastName(userObj.last_name);}
+    if (localStorage.getItem("token") && localStorage.getItem("user")) {
+      const token = localStorage.getItem("token");
+      const userObj = JSON.parse(localStorage.getItem("user"));
+      setToken(token);
+      setEmail(userObj.email);
+      setRole(userObj.role);
+      setFirstName(userObj.first_name);
+      setLastName(userObj.last_name);
+    }
   }, []);
   async function createUser(obj) {
     try {
@@ -70,6 +72,30 @@ function DataProvider({ children }) {
     } finally {
     }
   }
+  async function destroyBallot(id) {
+    try {
+      const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots/${id}`, {
+        method: "delete",
+        body: JSON.stringify({ id: id }),
+        headers: {
+          "Content-Type": "application/json",
+          "X-User-Token": token,
+          "X-User-Email": email,
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.message) {
+        return "success";
+      }
+    } catch {
+      alert("there was an error Quit");
+    } finally {
+    }
+  }
   async function CreateBallot(obj) {
     try {
       const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots`, {
@@ -86,11 +112,38 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.message) {
-        console.log(data.message)
+        console.log(data.message);
         return "success";
       }
-      if(data.errors){
-        alert(data.errors)
+      if (data.errors) {
+        alert(data.errors);
+      }
+    } catch {
+      alert("there was an error Quit");
+    } finally {
+    }
+  }
+  async function UpdateBallot(obj, id) {
+    try {
+      const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots/${id}`, {
+        method: "put",
+        body: JSON.stringify(obj),
+        headers: {
+          "Content-Type": "application/json",
+          "X-User-Token": token,
+          "X-User-Email": email,
+        },
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.message) {
+        console.log(data.message);
+        return "success";
+      }
+      if (data.errors) {
+        alert(data.errors);
       }
     } catch {
       alert("there was an error Quit");
@@ -151,7 +204,13 @@ function DataProvider({ children }) {
         Login,
         destroySession,
         HandleQuit,
-        CreateBallot
+        CreateBallot,
+        destroyBallot,
+        isLoading,
+        setIsLoading,
+        UpdateBallot,
+        currentBallot,
+        setCurrentBallot,
       }}
     >
       {children}
