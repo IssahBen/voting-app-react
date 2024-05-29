@@ -31,7 +31,7 @@ function Login({ setStatus }) {
             <form className="mt-8 space-y-6" onSubmit={handleLogin}>
               <input type="hidden" name="remember" value="true" />
               <div className="relative">
-                <div className="absolute right-0 mt-4">
+                <div className="absolute right-0 top-[-15px] mt-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6 text-green-500 spin"

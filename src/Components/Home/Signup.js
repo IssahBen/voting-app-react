@@ -39,7 +39,7 @@ function Signup({ setStatus }) {
   }
   return (
     <div className="flex w-full h-full justify-center items-center">
-      <div className="px-10 flex w-full md:mx-24 opacity-80 lg:w-1/2 justify-center items-center s bg-white rounded-[8px]">
+      <div className="px-10 flex w-full md:mx-24 opacity-100 lg:w-1/2 justify-center items-center s bg-white rounded-[8px]">
         <div className="relative flex items-center">
           <div className="w-full z-10">
             <div className="text-center">
@@ -50,7 +50,7 @@ function Signup({ setStatus }) {
             <form className="mt-5 space-y-4" onSubmit={handleSignUp}>
               <input type="hidden" name="remember" value="true" />
               <div className="relative">
-                <div className="absolute right-0 mt-2">
+                <div className="absolute right-0 top-[-10px] mt-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className={`h-6 w-6 ${

@@ -2,34 +2,37 @@ import { useEffect, useState } from "react";
 import { useData } from "../../../Context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function EditBallot() {
-  const { id } = useParams();
+export default function EditCandidate() {
+  const { id, cid } = useParams();
   const navigate = useNavigate();
-  const { isLoading, setIsLoading, UpdateBallot } = useData();
-  const [description, setDescription] = useState("");
-  const [title, setTitle] = useState("");
+  const { isLoading, setIsLoading, UpdateCandidate } = useData();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-  async function GetBallot(id) {
+  async function GetCandidate(id, cid) {
     const token = localStorage.getItem("token");
     const email = JSON.parse(localStorage.getItem("user")).email;
     setIsLoading(true);
     try {
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots/${id}`, {
-        method: "get",
-        body: JSON.stringify(),
-        headers: {
-          "Content-Type": "application/json",
-          "X-User-Token": token,
-          "X-User-Email": email,
-        },
-      });
+      const res = await fetch(
+        `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates/${cid}`,
+        {
+          method: "get",
+          body: JSON.stringify(),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         return "error";
       }
       if (data) {
-        setTitle(data.name);
-        setDescription(data.name);
+        setFirstName(data.first_name);
+        setLastName(data.last_name);
         setIsLoading(false);
         return "success";
       }
@@ -39,14 +42,14 @@ export default function EditBallot() {
     }
   }
   useEffect(function () {
-    GetBallot(id);
+    GetCandidate(id, cid);
   }, []);
   async function handleUpdate(e) {
     e.preventDefault();
-    const obj = { ballot: { name: title, description: description } };
-    const status = await UpdateBallot(obj, id);
+    const obj = { candidate: { first_name: firstName, last_name: lastName } };
+    const status = await UpdateCandidate(obj, id, cid);
     if (status === "success") {
-      navigate("/admin");
+      navigate(-1);
     }
   }
   return (
@@ -68,7 +71,7 @@ export default function EditBallot() {
             />
           </svg>
         </div>
-        Edit Ballot
+        Edit Candidate
       </div>
 
       <div className="relative mt-12 w-full max-w-lg sm:mt-10">
@@ -89,7 +92,7 @@ export default function EditBallot() {
                   <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
                     <div class="flex justify-between">
                       <label class="text-xs tracking-widest  font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
-                        Title
+                        First Name
                       </label>
                       <div class="absolute right-3 translate-y-2 text-green-200">
                         <svg
@@ -110,8 +113,8 @@ export default function EditBallot() {
                       type="text"
                       name="title"
                       placeholder=""
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                       autocomplete="off"
                       class="block w-full border-0 bg-transparent p-0 text-sm file:my-1 file:rounded-full file:border-0 file:bg-accent file:px-4 file:py-2 file:font-medium placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 sm:leading-7 text-foreground"
                     />
@@ -123,17 +126,17 @@ export default function EditBallot() {
                   <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
                     <div class="flex justify-between">
                       <label class="text-xs font-medium  tracking-widest text-muted-foreground group-focus-within:text-white text-gray-400">
-                        Description
+                        Last Name
                       </label>
                     </div>
                     <div class="flex items-center">
-                      <textarea
-                        type="textarea"
+                      <input
+                        type="text"
                         name="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        class="block h-44 w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
-                      ></textarea>
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                      ></input>
                     </div>
                   </div>
                 </div>
@@ -144,7 +147,7 @@ export default function EditBallot() {
                   class="font-semibold hover:bg-green-700 hover:text-white hover:ring hover:ring-green-700 transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2 tracking-widest"
                   type="submit"
                 >
-                  Update
+                  Update details
                 </button>
               </div>
             </form>

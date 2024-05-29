@@ -79,14 +79,13 @@ function ActivePolls({ size }) {
         <p className="text-2xl  font-bold text-blue-950">Ongoing Campaigns:</p>
         <p className="text-xl text-black">{size}</p>
       </div>
-      <div className="pulse">
-        <NavLink
-          to="/admin/create"
-          className={`   font-mono btn tracking-widest rounded-lg  text-white bg-green-700 px-2 py-1 border  border-gray-700`}
-        >
-          + Create Ballot
-        </NavLink>
-      </div>
+
+      <NavLink
+        to="/admin/create"
+        className={` text-center  font-mono btn tracking-widest rounded-lg  text-white bg-green-700 px-2  border  border-gray-700`}
+      >
+        Add Ballot
+      </NavLink>
     </div>
   );
 }
