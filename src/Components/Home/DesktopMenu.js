@@ -15,7 +15,7 @@ export default function DesktopMenu({ status, setStatus }) {
     }
   }
   return (
-    <div className="hidden h-10 font-serif font-bold md:flex md:space-x-8">
+    <div className="hidden h-10 poppins-medium tracking-tighter font-bold md:flex md:space-x-8">
       <div className="group hover:btn">
         {loggedIn ? (
           ""
@@ -48,7 +48,11 @@ export default function DesktopMenu({ status, setStatus }) {
       </div>
       <div className="group hover:btn">
         {loggedIn ? (
-          <a onClick={handleLogout} className={`hover:text-pink-500 `}>
+          <a
+            href="#b"
+            onClick={handleLogout}
+            className={`hover:text-pink-500 `}
+          >
             logout
           </a>
         ) : (

@@ -1,11 +1,14 @@
 function Footer() {
   return (
-    <div className="absolute bottom-0 bg-black w-full opacity-75 py-2">
-      <div className="flex justify-center items-baseline space-x-2 ">
-        <h1 className="text-md  text-gray-500 h-1 mb-2">Push.Dev</h1>
-        <h1 className="text-thin  text-gray-500 h-1 mb-2">
-          .copyright-2024@ohiahene
-        </h1>
+    <div class="bg-white  shadow w-full dark:bg-gray-800">
+      <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+        <span class="text-sm text-gray-900 sm:text-center dark:text-gray-400">
+          © 2023{" "}
+          <a href="https://flowbite.com/" class="hover:underline">
+            Flowbite™
+          </a>
+          . All Rights Reserved.
+        </span>
       </div>
     </div>
   );

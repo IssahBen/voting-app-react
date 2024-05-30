@@ -11,18 +11,17 @@ export default function Greeting() {
     setHour(Number(hour));
   }, []);
   return (
-    <div className="flex tracking-tighter justify-start w-full  ml-5 px-5 ">
+    <div className="flex tracking-tighter justify-center items-center w-full  ml-5 px-5 ">
       <div className="flex  justify-start items-center gap-0">
-        <p className="text-2xl text-black font-bold ">
+        <p className=" poppins-light text-lg text-black font-bold ">
           Good{" "}
           {hour < 12
             ? "Morning"
             : hour >= 12 && hour < 16
-            ? "Afternoon"
-            : "Evening"}{" "}
-          {firstName},
+            ? "Afternoon,"
+            : "Evening,"}{" "}
+          {firstName}
         </p>
-        <p className="text-4xl gelatine">{hour <= 12 ? "🌤️" : "🌑"}</p>
       </div>
     </div>
   );

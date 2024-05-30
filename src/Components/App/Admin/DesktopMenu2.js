@@ -15,16 +15,16 @@ export default function DesktopMenu({ status, setStatus }) {
   }
 
   return (
-    <div className="hidden h-10 font-serif font-bold md:flex md:space-x-8">
+    <div className="hidden h-10 poppins-medium tracking-tighter md:flex md:space-x-8">
       <div className="group hover:btn">
         <NavLink to="/admin" className={`hover:text-pink-500 `}>
           Ballots
         </NavLink>
         <div className="mx-2 group-hover:border-b group-hover:border-blue-50 group-hover:shake"></div>
       </div>
-     
+
       <div className="group hover:btn">
-        <a onClick={handleLogout} className={`hover:text-pink-500 `}>
+        <a href="#b" onClick={handleLogout} className={`hover:text-pink-500 `}>
           logout
         </a>
         <div className="mx-2 group-hover:border-b group-hover:border-blue-50 group-hover:shake "></div>

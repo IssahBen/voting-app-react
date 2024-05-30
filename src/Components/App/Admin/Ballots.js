@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../../Context/DataContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import BallotItem from "./BallotItem";
 import Spinner from "../../Spinner";
@@ -73,25 +73,62 @@ function Ballots() {
 }
 
 function ActivePolls({ size }) {
+  const navigate = useNavigate();
+  function handleNavigation() {
+    navigate("/admin/create");
+  }
   return (
-    <div className="flex   w-full justify-between items-center  mt-5 mb-2   ">
+    <div className="flex  poppins-bold w-full justify-between items-center  mt-5 mb-2   ">
       <div className="flex  w-72  p-2 space-x-1 justify-start items-center  mr-5 border-1 border-gray-500">
-        <p className="text-2xl  font-bold text-blue-950">Ongoing Campaigns:</p>
-        <p className="text-xl text-black">{size}</p>
+        <p className="  font-bold text-xl text-black">Ongoing Campaigns:</p>
+        <p className="text-xl font-extrabold text-black">{size}</p>
       </div>
 
-      <NavLink
+      {/* <NavLink
         to="/admin/create"
         className={` text-center  font-mono btn tracking-widest rounded-lg  text-white bg-green-700 px-2  border  border-gray-700`}
       >
         Add Ballot
-      </NavLink>
+      </NavLink> */}
+      <div className="">
+        <button onClick={handleNavigation} class="c-button c-button--gooey">
+          {" "}
+          Add Ballot
+          <div class="c-button__blobs">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </button>
+        <svg
+          style={{ display: "block", height: " 0", width: " 0" }}
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <filter id="goo">
+              <feGaussianBlur
+                result="blur"
+                stdDeviation="10"
+                in="SourceGraphic"
+              ></feGaussianBlur>
+              <feColorMatrix
+                result="goo"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                mode="matrix"
+                in="blur"
+              ></feColorMatrix>
+              <feBlend in2="goo" in="SourceGraphic"></feBlend>
+            </filter>
+          </defs>
+        </svg>
+      </div>
     </div>
   );
 }
 function EmptyBallotMessage() {
   return (
-    <div className="flex pulse flex-col items-center w-full mt-10">
+    <div className="flex pulse poppins-regular flex-col items-center w-full mt-10">
       <p className="w-42 font-bold text-2xl text-blue-950 text-center">
         You seem to have no Ballots
       </p>

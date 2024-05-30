@@ -31,7 +31,7 @@ export default function MobileMenu({ status, setStatus }) {
     }
   }
   return (
-    <div className="md:hidden">
+    <div className="md:hidden poppins-medium">
       <button
         id="menu-btn"
         type="button"
@@ -46,53 +46,67 @@ export default function MobileMenu({ status, setStatus }) {
       <div
         id="menu"
         ref={mobileMenu}
-        className="absolute top-0 right-0 hidden flex-col z-4  w-1/2 h-72 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
+        className="absolute    z-20 tracking-tighter top-0 right-0 hidden flex-col   w-1/2 h-72 py-1 pt-10 pl-14 space-y-2 text-lg text-marine_blue uppercase bg-white"
       >
         {loggedIn ? (
           ""
         ) : (
           <a
             href="#home"
-            onClick={(e) => setStatus("login")}
+            onClick={(e) => {
+              setStatus("login");
+              HandleClick();
+            }}
             className={`${
               status === "login" ? "hidden " : ""
-            }hover:text-pink-500 hover:shake font-mono btn tracking-widest`}
+            }hover:text-pink-500 hover:shake  btn `}
           >
             Sign in
           </a>
         )}
         {loggedIn ? (
           <NavLink
+            onClick={HandleClick()}
             to="admin"
-            className={`hover:text-pink-500 hover:shake font-mono btn tracking-widest`}
+            className={`hover:text-pink-500 hover:shake  btn `}
           >
             Admin
           </NavLink>
         ) : (
           <a
             href="#about"
-            onClick={(e) => setStatus("signup")}
+            onClick={(e) => {
+              setStatus("signup");
+              HandleClick();
+            }}
             className={`${
               status === "signup" ? "hidden " : ""
-            }hover:text-pink-500 hover:shake font-mono btn tracking-widest`}
+            }hover:text-pink-500 hover:shake  btn `}
           >
             Register
           </a>
         )}
         {loggedIn ? (
           <a
-            onClick={handleLogout}
-            className={`hover:text-pink-500 hover:shake  font-mono btn tracking-widest hover:cursor-pointer`}
+            href="#b"
+            onClick={() => {
+              handleLogout();
+              HandleClick();
+            }}
+            className={`hover:text-pink-500 hover:shake   btn hover:cursor-pointer`}
           >
             Logout
           </a>
         ) : (
           <a
             href="#projects"
-            onClick={(e) => setStatus("validate")}
+            onClick={(e) => {
+              setStatus("validate");
+              HandleClick();
+            }}
             className={`${
               status === "validationg" ? "hidden " : ""
-            }hover:text-pink-500 hover:shake  font-mono btn tracking-widest`}
+            }hover:text-pink-500 hover:shake   btn `}
           >
             Check ELigibility?
           </a>

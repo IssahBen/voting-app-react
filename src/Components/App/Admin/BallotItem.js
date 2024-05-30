@@ -26,59 +26,62 @@ export default function BallotItem({ ballot, GetBallots }) {
           to={`/admin/ballots/${ballot.id}`}
           onClick={setCurrentBallot(ballot.name)}
         >
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-950 dark:text-white">
+          <h5 class="mb-2 poppins-bold text-2xl font-bold tracking-tight text-black dark:text-white">
             {ballot.name}
           </h5>
         </NavLink>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <p class="mb-3 poppins-light tracking-tight text-gray-700 dark:text-gray-400">
           {ballot.description}
         </p>
-        <button
-          onClick={handelEdit}
-          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 tracking-widest"
-        >
+
+        <button class="Btn" onClick={handelEdit}>
           Edit
-          <svg
-            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
+          <svg viewBox="0 0 512 512" class="svg">
+            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
           </svg>
         </button>
+
         <button
-          type="button"
+          class="bin-button absolute top-[-1px]  right-[-1px]"
           onClick={() => {
             modal.current.classList.remove("hidden");
           }}
-          class="  border-l-2  border-b-2 border-gray-950 absolute top-[10px] gelatine right-[10px] ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-full focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-          data-modal-target="popup-modal"
-          data-modal-toggle="popup-modal"
         >
           <svg
-            className="   scale-10 text-red-600 "
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
+            class="bin-top"
+            viewBox="0 0 39 7"
             fill="none"
-            viewBox="0 0 14 14"
+            xmlns="http://www.w3.org/2000/svg"
           >
+            <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
+            <line
+              x1="12"
+              y1="1.5"
+              x2="26.0357"
+              y2="1.5"
+              stroke="white"
+              stroke-width="3"
+            ></line>
+          </svg>
+          <svg
+            className="bin-bottom"
+            viewBox="0 0 33 39"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <mask id="path-1-inside-1_8_19" fill="white">
+              <path d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"></path>
+            </mask>
             <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-            />
+              d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"
+              fill="white"
+              mask="url(#path-1-inside-1_8_19)"
+            ></path>
+            <path d="M12 6L12 29" stroke="white" stroke-width="4"></path>
+            <path d="M21 6V29" stroke="white" stroke-width="4"></path>
           </svg>
         </button>
+
         <Modal modal={modal} id={ballot.id} />
       </div>
     </div>

@@ -41,16 +41,19 @@ function Signup({ setStatus }) {
     <div className="flex w-full h-full justify-center items-center">
       <div className="px-10 flex w-full md:mx-24 opacity-100 lg:w-1/2 justify-center items-center s bg-white rounded-[8px]">
         <div className="relative flex items-center">
-          <div className="w-full z-10">
-            <div className="text-center">
+          <div className="w-full h-full z-10 ">
+            <div className=" poppins-extrabold text-center">
               <h2 className=" pulse mt-6 text-3xl font-bold text-gray-900">
                 Sign Up Now
               </h2>
             </div>
-            <form className="mt-5 space-y-4" onSubmit={handleSignUp}>
+            <form
+              className="mt-2  poppins-light space-y-3"
+              onSubmit={handleSignUp}
+            >
               <input type="hidden" name="remember" value="true" />
               <div className="relative">
-                <div className="absolute right-0 top-[-10px] mt-2">
+                <div className="absolute  right-[-10px] top-[-50px] mt-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className={`h-6 w-6 ${
@@ -82,7 +85,7 @@ function Signup({ setStatus }) {
                   placeholder="mail@gmail.com"
                 />
               </div>
-              <div className="mt-2 content-center">
+              <div className=" content-center">
                 <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
                   First Name
                 </label>
@@ -95,7 +98,7 @@ function Signup({ setStatus }) {
                   placeholder="First Name"
                 />
               </div>
-              <div className="mt-2 content-center">
+              <div className=" content-center">
                 <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
                   Last Name
                 </label>
@@ -108,7 +111,7 @@ function Signup({ setStatus }) {
                   placeholder="Last Name"
                 />
               </div>
-              <div className="mt-2 content-center">
+              <div className=" content-center">
                 <label className="text-sm  pulse font-bold text-gray-700 tracking-wide">
                   Password
                 </label>
@@ -121,7 +124,7 @@ function Signup({ setStatus }) {
                   placeholder="Enter your password"
                 />
               </div>
-              <div className="mt-2 content-center">
+              <div className=" content-center">
                 <label
                   className={`text-sm  pulse font-bold ${
                     password !== passwordConfirmation
@@ -140,7 +143,7 @@ function Signup({ setStatus }) {
                   placeholder="Confirm password"
                 />
               </div>
-              <div className="mt-2 content-center">
+              <div className=" content-center">
                 <label className="text-sm  pulse font-bold tracking-wide">
                   Role
                 </label>
@@ -157,25 +160,22 @@ function Signup({ setStatus }) {
                 <div className="flex items-center"></div>
               </div>
               <div>
-                <button
-                  type="submit"
-                  className={`w-full  flip flex justify-center   ${
-                    email && password === passwordConfirmation
-                      ? "bg-green-500 "
-                      : "bg-red-700 "
-                  } text-gray-100 p-1 mb-5  rounded-xl tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600  cursor-pointer transition ease-in duration-300`}
-                >
-                  Register
-                </button>
+                <div>
+                  <button type="submit" className="button">
+                    <div className="button-top">Register</div>
+                    <div className="button-bottom"></div>
+                    <div className="button-base"></div>
+                  </button>
+                </div>
               </div>
             </form>
           </div>
           <p className="flex ml-5 flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
-            <span> Have an account?</span>
+            <span className="poppins-light"> Have an account?</span>
 
             <button
               onClick={() => setStatus("login")}
-              className=" gelatine shake text-2xl text-green-500 font-bold tracking-wide hover:text-indigo-500 no-underline hover:underline cursor-pointer transition ease-in duration-300"
+              className=" poppins-medium gelatine shake text-2xl text-red-500 font-bold tracking-wide hover:text-indigo-500 no-underline hover:underline cursor-pointer transition ease-in duration-300"
             >
               Login
             </button>

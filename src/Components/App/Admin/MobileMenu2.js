@@ -45,18 +45,18 @@ export default function MobileMenu({ status, setStatus }) {
       <div
         id="menu"
         ref={mobileMenu}
-        className="absolute top-0 right-0 hidden flex-col z-4  w-1/2 h-52 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
+        className="absolute top-0  poppins-medium tracking-tighter right-0 hidden flex-col z-4  w-1/2 h-52 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
       >
         <NavLink
           to="/admin"
-          className={`hover:text-pink-500 hover:shake font-mono btn tracking-widest`}
+          className={`hover:text-pink-500 hover:shake  btn `}
         >
           Ballots
         </NavLink>
 
         <a
           onClick={handleLogout}
-          className={`hover:text-pink-500 hover:shake  font-mono btn tracking-widest hover:cursor-pointer`}
+          className={`hover:text-pink-500 hover:shake   btn  hover:cursor-pointer`}
         >
           Logout
         </a>
