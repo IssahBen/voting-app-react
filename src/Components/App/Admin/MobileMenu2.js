@@ -18,8 +18,9 @@ export default function MobileMenu({ status, setStatus }) {
     }
   }
   function HandleClick() {
-    let isOpen = hamburger.current.classList.contains("open");
+    const isOpen = hamburger.current.classList.contains("open");
     if (isOpen) {
+      console.log(2);
       hamburger.current.classList.remove("open");
       mobileMenu.current.classList.remove("flex");
       mobileMenu.current.classList.add("hidden");

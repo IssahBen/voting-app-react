@@ -11,7 +11,7 @@ export default function Greeting() {
     setHour(Number(hour));
   }, []);
   return (
-    <div className="flex tracking-tighter justify-center items-center w-full  ml-5 px-5 ">
+    <div className="flex tracking-tighter justify-center  w-full  ml-5 px-5 ">
       <div className="flex  justify-start items-center gap-0">
         <p className=" poppins-light text-lg text-black font-bold ">
           Good{" "}

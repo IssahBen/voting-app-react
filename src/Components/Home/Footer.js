@@ -5,7 +5,7 @@ function Footer() {
         <span class="text-sm text-gray-900 sm:text-center dark:text-gray-400">
           © 2023{" "}
           <a href="https://flowbite.com/" class="hover:underline">
-            Flowbite™
+            Push™
           </a>
           . All Rights Reserved.
         </span>

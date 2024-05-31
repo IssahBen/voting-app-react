@@ -15,7 +15,7 @@ export default function DesktopMenu({ status, setStatus }) {
   }
 
   return (
-    <div className="hidden h-10 poppins-medium tracking-tighter md:flex md:space-x-8">
+    <div className="hidden h-10 poppins-medium tracking-tighter md:flex md:space-x-8  md:items-center">
       <div className="group hover:btn">
         <NavLink to="/admin" className={`hover:text-pink-500 `}>
           Ballots

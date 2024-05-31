@@ -19,15 +19,17 @@ export default function MobileMenu({ status, setStatus }) {
     }
   }
   function HandleClick() {
-    let isOpen = hamburger.current.classList.contains("open");
+    let isOpen = hamburger.current?.classList.contains("open");
+
     if (isOpen) {
-      hamburger.current.classList.remove("open");
-      mobileMenu.current.classList.remove("flex");
-      mobileMenu.current.classList.add("hidden");
+      hamburger.current?.classList.remove("open");
+
+      mobileMenu.current?.classList.remove("flex");
+      mobileMenu.current?.classList.add("hidden");
     } else {
-      hamburger.current.classList.add("open");
-      mobileMenu.current.classList.add("flex");
-      mobileMenu.current.classList.remove("hidden");
+      hamburger.current?.classList.add("open");
+      mobileMenu.current?.classList.add("flex");
+      mobileMenu.current?.classList.remove("hidden");
     }
   }
   return (

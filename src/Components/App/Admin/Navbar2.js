@@ -5,7 +5,7 @@ import Greeting from "./Greeting";
 
 function Navbar({ status, setStatus }) {
   return (
-    <div className="flex  w-full border-b-2 border-blue-950  bg-white justify-between  items-center px-5 py-2  ">
+    <div className="flex  w-full   bg-white justify-between  items-center px-5 py-2  ">
       <NavLink
         to="/"
         className="font-bold text-4xl   text-blue-950 hover:cursor-pointer"
