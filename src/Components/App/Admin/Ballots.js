@@ -78,51 +78,21 @@ function ActivePolls({ size }) {
     navigate("/admin/create");
   }
   return (
-    <div className="flex  poppins-bold w-full justify-between items-center  mt-5 mb-2   ">
-      <div className="flex  w-72  p-2 space-x-1 justify-start items-center  mr-5 border-1 border-gray-500">
-        <p className="  font-bold text-xl text-black">Ongoing Campaigns:</p>
-        <p className="text-xl font-extrabold text-black">{size}</p>
+    <div className="flex  poppins-bold w-full justify-between items-center  mt-5 mb-2  p-1 ">
+      {/* <div className="flex    p-2 space-x-1 justify-start items-center  mr-5 border-1 border-gray-500">
+        <p className="  font-bold text-xl text-black">Campaigns:{size} </p>
+      </div> */}
+      <div class="stats shadow">
+        <div class="stat">
+          <div class="stat-title">Total Ballots</div>
+          <div class="stat-value">{size < 10 ? `0${size}` : size}</div>
+        </div>
       </div>
 
-      {/* <NavLink
-        to="/admin/create"
-        className={` text-center  font-mono btn tracking-widest rounded-lg  text-white bg-green-700 px-2  border  border-gray-700`}
-      >
-        Add Ballot
-      </NavLink> */}
-      <div className="">
-        <button onClick={handleNavigation} class="c-button c-button--gooey">
-          {" "}
-          Add Ballot
-          <div class="c-button__blobs">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </button>
-        <svg
-          style={{ display: "block", height: " 0", width: " 0" }}
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur
-                result="blur"
-                stdDeviation="10"
-                in="SourceGraphic"
-              ></feGaussianBlur>
-              <feColorMatrix
-                result="goo"
-                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-                mode="matrix"
-                in="blur"
-              ></feColorMatrix>
-              <feBlend in2="goo" in="SourceGraphic"></feBlend>
-            </filter>
-          </defs>
-        </svg>
-      </div>
+      <button class="icon-btn add-btn" onClick={handleNavigation}>
+        <div class="add-icon"></div>
+        <div class="btn-txt">Add Ballot</div>
+      </button>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function Greeting() {
         <p className=" poppins-light text-lg text-black font-bold ">
           Good{" "}
           {hour < 12
-            ? "Morning"
+            ? "Morning,"
             : hour >= 12 && hour < 16
             ? "Afternoon,"
             : "Evening,"}{" "}
