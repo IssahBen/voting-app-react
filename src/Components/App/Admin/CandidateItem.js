@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 export function CandidateItem({ candidate, ballotId }) {
   const modal = useRef(null);
   return (
-    <Card className="h-80">
+    <Card className="h-64 poppins-light">
       <div className="flex justify-end px-4 pt-4">
         <Dropdown inline label="">
           <Dropdown.Item>
@@ -37,7 +37,7 @@ export function CandidateItem({ candidate, ballotId }) {
           src={defaultpic}
           alt="Voter"
         />
-        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+        <h5 className="mb-1  text-gray-900 dark:text-white">
           {candidate.first_name} {candidate.last_name}
         </h5>
         <div className="mt-4 flex space-x-3 lg:mt-6">

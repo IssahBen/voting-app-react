@@ -7,7 +7,7 @@ import Spinner from "../../Spinner";
 
 function Ballots() {
   const [ballots, setBallots] = useState([]);
-  const { isLoading, setIsLoading } = useData();
+  const { isLoading, setIsLoading, setCurrentBallot } = useData();
 
   async function GetBallots() {
     const token = localStorage.getItem("token");
@@ -39,7 +39,7 @@ function Ballots() {
   }
 
   useEffect(function () {
-    console.log(3);
+    setCurrentBallot({});
     GetBallots();
   }, []);
   return (
@@ -75,13 +75,10 @@ function Ballots() {
 function ActivePolls({ size }) {
   const navigate = useNavigate();
   function handleNavigation() {
-    navigate("/admin/create");
+    navigate("/admin/ballots/create");
   }
   return (
     <div className="flex  poppins-bold w-full justify-between items-center  mt-5 mb-2  p-1 ">
-      {/* <div className="flex    p-2 space-x-1 justify-start items-center  mr-5 border-1 border-gray-500">
-        <p className="  font-bold text-xl text-black">Campaigns:{size} </p>
-      </div> */}
       <div class="stats shadow">
         <div class="stat">
           <div class="stat-title">Total Ballots</div>
@@ -102,7 +99,10 @@ function EmptyBallotMessage() {
       <p className="w-42 font-bold text-2xl text-blue-950 text-center">
         You seem to have no Ballots
       </p>
-      <NavLink to="/admin/create" className=" rounded-full p-2 bg-red-500">
+      <NavLink
+        to="/admin/ballots/create"
+        className=" rounded-full p-2 bg-red-500"
+      >
         + Create one
       </NavLink>
     </div>

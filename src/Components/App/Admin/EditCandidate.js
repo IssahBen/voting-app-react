@@ -52,9 +52,12 @@ export default function EditCandidate() {
       navigate(-1);
     }
   }
+  function HandleNavigation() {
+    navigate(-1);
+  }
   return (
     <div className="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0">
-      <div className="text-foreground font-semibold text-2xl tracking-widest mx-auto flex items-center gap-2">
+      <div className="text-foreground  poppins-bold text-2xl tracking-widest mx-auto flex items-center gap-2">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +83,26 @@ export default function EditCandidate() {
           bis_skin_checked="1"
         ></div>
         <div class="mx-5 border dark:border-b-white/50 dark:border-t-white/50 border-b-white/20 sm:border-t-white/20 shadow-[20px_0_20px_20px] shadow-slate-500/10 dark:shadow-white/20 rounded-lg border-white/20 border-l-white/20 border-r-white/20 sm:shadow-sm lg:rounded-xl lg:shadow-none">
-          <div class="flex flex-col p-6">
+          <div class="flex justify-between items-center p-6">
             <h3 class="text-xl font-semibold leading-6 tracking-widest">
               WeVote
             </h3>
+            <button class="bbutton" onClick={HandleNavigation}>
+              <div class="button-box">
+                <span class="button-elem">
+                  <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"></path>
+                  </svg>
+                </span>
+                <span class="button-elem">
+                  <svg viewBox="0 0 46 40">
+                    <path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"></path>
+                  </svg>
+                </span>
+              </div>
+            </button>
           </div>
-          <div class="p-6 pt-0">
+          <div class="p-6 pt-0 poppins-light">
             <form onSubmit={handleUpdate}>
               <div>
                 <div>

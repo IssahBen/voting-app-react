@@ -11,7 +11,7 @@ function DataProvider({ children }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [currentBallot, setCurrentBallot] = useState("");
+  const [currentBallot, setCurrentBallot] = useState({});
 
   const loggedIn = token === "" ? false : true;
   useEffect(function () {

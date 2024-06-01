@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useData } from "../../../Context/DataContext";
 import { useEffect, useState } from "react";
 import Spinner from "../../Spinner";
@@ -49,7 +49,7 @@ export default function ShowBallot() {
   );
   return (
     <div className="w-full h-full">
-      <Header title={currentBallot} />
+      <Header title={currentBallot.name} />
       {candidates.length === 0 && !isLoading ? <EmptyCandidateMessage /> : ""}
       {isLoading ? <Spinner /> : ""}
       {!isLoading && candidates.length !== 0 ? (
@@ -57,7 +57,7 @@ export default function ShowBallot() {
       ) : (
         ""
       )}
-      <div className="w-full h-full grid grid-cols-2  md:grid-cols-3">
+      <div className="w-full h-full grid grid-cols-2   gap-x-0.5 md:grid-cols-3">
         {candidates.map((candidate) => {
           return (
             <CandidateItem
@@ -86,30 +86,32 @@ function EmptyCandidateMessage() {
 }
 
 function Candidates({ size, id }) {
+  const navigate = useNavigate();
+  function HandleNavigation() {
+    navigate(`/admin/ballots/${id}/create`);
+  }
   return (
     <div className="flex   w-full justify-between items-center  mt-5 mb-2   ">
-      <div className="flex  w-72  p-2 space-x-1 justify-start items-center  mr-5 border-1 border-gray-500">
-        <p className="text-2xl  font-bold text-blue-950">
-          Number of Candidates:
-        </p>
-        <p className="text-xl text-black">{size}</p>
+      <div className="stats shadow">
+        <div className="stat">
+          <div className="stat-title">Candidates</div>
+          <div className="stat-value">{size < 10 ? `0${size}` : size}</div>
+        </div>
       </div>
 
-      <NavLink
-        to={`/admin/ballots/${id}/create`}
-        className={`  text-center font-mono font-bold btn rounded-lg  text-black hover:bg-red-700 px-2  border tracking-widest border-gray-700`}
-      >
-        Add <span>Candidate</span>
-      </NavLink>
+      <button className="icon-btn add-btn" onClick={HandleNavigation}>
+        <div className="add-icon"></div>
+        <div className="btn-txt">Add Candidate</div>
+      </button>
     </div>
   );
 }
 
 function Header({ title }) {
   return (
-    <div className="flex justify-center w-full  mt-5 tracking-wide ">
+    <div className="flex justify-center w-full  mt-5 tracking-wide poppins-bold">
       {" "}
-      <h1 className="mb-4 text-4xl font-extrabold leading-none  text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+      <h1 className="mb-4 text-4xl font-extrabold leading-none  text-gray-500 md:text-5xl lg:text-6xl dark:text-white">
         {title}
       </h1>
     </div>

@@ -24,7 +24,7 @@ export default function BallotItem({ ballot, GetBallots }) {
       <div class="p-5">
         <NavLink
           to={`/admin/ballots/${ballot.id}`}
-          onClick={setCurrentBallot(ballot.name)}
+          onClick={setCurrentBallot(ballot)}
         >
           <h5 class="mb-2 poppins-bold text-2xl font-bold tracking-tight text-black dark:text-white">
             {ballot.name}
