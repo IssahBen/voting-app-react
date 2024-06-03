@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import { useData } from "../../../Context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function EditCandidate() {
-  const { id, cid } = useParams();
+export default function EditVoter() {
+  const { id, vid } = useParams();
   const navigate = useNavigate();
-  const { setIsLoading, UpdateCandidate } = useData();
+  const { setIsLoading, UpdateVoter } = useData();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
-  async function GetCandidate(id, cid) {
+  async function GetVoter(id, vid) {
     const token = localStorage.getItem("token");
     const email = JSON.parse(localStorage.getItem("user")).email;
     setIsLoading(true);
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates/${cid}`,
+        `http://10.0.0.121:3000/api/v1/ballots/${id}/voters/${vid}`,
         {
           method: "get",
           body: JSON.stringify(),
@@ -33,6 +34,7 @@ export default function EditCandidate() {
       if (data) {
         setFirstName(data.first_name);
         setLastName(data.last_name);
+        setEmail(data.email);
         setIsLoading(false);
         return "success";
       }
@@ -42,12 +44,14 @@ export default function EditCandidate() {
     }
   }
   useEffect(function () {
-    GetCandidate(id, cid);
+    GetVoter(id, vid);
   }, []);
   async function handleUpdate(e) {
     e.preventDefault();
-    const obj = { candidate: { first_name: firstName, last_name: lastName } };
-    const status = await UpdateCandidate(obj, id, cid);
+    const obj = {
+      voter: { first_name: firstName, last_name: lastName, email: email },
+    };
+    const status = await UpdateVoter(obj, id, vid);
     if (status === "success") {
       navigate(-1);
     }
@@ -74,7 +78,7 @@ export default function EditCandidate() {
             />
           </svg>
         </div>
-        Edit Candidate
+        Edit Voter
       </div>
 
       <div className="relative mt-12 w-full max-w-lg sm:mt-10">
@@ -152,6 +156,26 @@ export default function EditCandidate() {
                         name="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
+                        class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                      ></input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div>
+                  <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+                    <div class="flex justify-between">
+                      <label class="text-xs font-medium  tracking-widest text-muted-foreground group-focus-within:text-white text-gray-400">
+                        Email
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input
+                        type="text"
+                        name="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
                       ></input>
                     </div>

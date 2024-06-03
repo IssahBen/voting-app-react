@@ -33,7 +33,7 @@ export default function MobileMenu({ status, setStatus }) {
     }
   }
   return (
-    <div className="md:hidden poppins-medium">
+    <div className="md:hidden poppins-regular">
       <button
         id="menu-btn"
         type="button"

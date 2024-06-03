@@ -15,7 +15,7 @@ export default function DesktopMenu({ status, setStatus }) {
     }
   }
   return (
-    <div className="hidden h-10 poppins-medium tracking-tighter font-bold md:flex md:space-x-8">
+    <div className="hidden h-10 poppins-regular tracking-tighter font-bold md:flex md:space-x-8">
       <div className="group hover:btn">
         {loggedIn ? (
           ""

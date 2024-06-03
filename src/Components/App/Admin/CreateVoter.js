@@ -1,53 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useData } from "../../../Context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function EditCandidate() {
-  const { id, cid } = useParams();
+export default function CreateVoter() {
   const navigate = useNavigate();
-  const { setIsLoading, UpdateCandidate } = useData();
-  const [firstName, setFirstName] = useState("");
+  const { id } = useParams();
+  const { CreateVoter } = useData();
+  const [firstName, setfirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
-  async function GetCandidate(id, cid) {
-    const token = localStorage.getItem("token");
-    const email = JSON.parse(localStorage.getItem("user")).email;
-    setIsLoading(true);
-    try {
-      const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates/${cid}`,
-        {
-          method: "get",
-          body: JSON.stringify(),
-          headers: {
-            "Content-Type": "application/json",
-            "X-User-Token": token,
-            "X-User-Email": email,
-          },
-        }
-      );
-      const data = await res.json();
-      if (!res.ok) {
-        return "error";
-      }
-      if (data) {
-        setFirstName(data.first_name);
-        setLastName(data.last_name);
-        setIsLoading(false);
-        return "success";
-      }
-    } catch {
-      alert("there was an error trying to fetch data");
-    } finally {
-    }
-  }
-  useEffect(function () {
-    GetCandidate(id, cid);
-  }, []);
-  async function handleUpdate(e) {
+  const [email, setEmail] = useState("");
+  async function handleCreate(e) {
     e.preventDefault();
-    const obj = { candidate: { first_name: firstName, last_name: lastName } };
-    const status = await UpdateCandidate(obj, id, cid);
+    const obj = {
+      voter: { first_name: firstName, last_name: lastName, email: email },
+    };
+    const status = await CreateVoter(obj, id);
     if (status === "success") {
       navigate(-1);
     }
@@ -56,8 +23,8 @@ export default function EditCandidate() {
     navigate(-1);
   }
   return (
-    <div className="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0">
-      <div className="text-foreground  poppins-bold text-2xl tracking-widest mx-auto flex items-center gap-2">
+    <div class="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0 tacking-widest">
+      <div class="text-foreground poppins-bold text-2xl  mx-auto flex items-center gap-2">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -68,25 +35,23 @@ export default function EditCandidate() {
             class="w-6 h-6"
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              stroke-linecap="round"
+              stroke-linejoin="round"
               d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5"
             />
           </svg>
         </div>
-        Edit Candidate
+        Add Voter
       </div>
 
-      <div className="relative mt-12 w-full max-w-lg sm:mt-10">
+      <div class="relative mt-12 w-full max-w-lg sm:mt-10">
         <div
-          className="relative -mb-px h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent"
+          class="relative -mb-px h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent"
           bis_skin_checked="1"
         ></div>
         <div class="mx-5 border dark:border-b-white/50 dark:border-t-white/50 border-b-white/20 sm:border-t-white/20 shadow-[20px_0_20px_20px] shadow-slate-500/10 dark:shadow-white/20 rounded-lg border-white/20 border-l-white/20 border-r-white/20 sm:shadow-sm lg:rounded-xl lg:shadow-none">
-          <div class="flex justify-between items-center p-6">
-            <h3 class="text-xl font-semibold leading-6 tracking-widest">
-              WeVote
-            </h3>
+          <div class="flex items-center justify-between p-6">
+            <h3 class="text-xl font-semibold leading-6 ">WeVote</h3>
             <button class="bbutton" onClick={HandleNavigation}>
               <div class="button-box">
                 <span class="button-elem">
@@ -103,12 +68,12 @@ export default function EditCandidate() {
             </button>
           </div>
           <div class="p-6 pt-0 poppins-light">
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleCreate}>
               <div>
                 <div>
                   <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
                     <div class="flex justify-between">
-                      <label class="text-xs tracking-widest  font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
+                      <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
                         First Name
                       </label>
                       <div class="absolute right-3 translate-y-2 text-green-200">
@@ -131,7 +96,7 @@ export default function EditCandidate() {
                       name="title"
                       placeholder=""
                       value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
+                      onChange={(e) => setfirstName(e.target.value)}
                       autocomplete="off"
                       class="block w-full border-0 bg-transparent p-0 text-sm file:my-1 file:rounded-full file:border-0 file:bg-accent file:px-4 file:py-2 file:font-medium placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 sm:leading-7 text-foreground"
                     />
@@ -142,18 +107,38 @@ export default function EditCandidate() {
                 <div>
                   <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
                     <div class="flex justify-between">
-                      <label class="text-xs font-medium  tracking-widest text-muted-foreground group-focus-within:text-white text-gray-400">
+                      <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
                         Last Name
                       </label>
                     </div>
                     <div class="flex items-center">
                       <input
-                        type="text"
+                        type="textarea"
                         name="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
-                      ></input>
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div>
+                  <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+                    <div class="flex justify-between">
+                      <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
+                        Email
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input
+                        type="textarea"
+                        name="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                      />
                     </div>
                   </div>
                 </div>
@@ -161,10 +146,10 @@ export default function EditCandidate() {
 
               <div class="mt-4 flex items-center justify-center gap-x-2">
                 <button
-                  class="font-semibold hover:bg-green-700 hover:text-white hover:ring hover:ring-green-700 transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2 tracking-widest"
+                  class="font-semibold tracking-widest hover:bg-red-700 hover:text-white hover:ring hover:ring-red-700 transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2"
                   type="submit"
                 >
-                  Update details
+                  Add
                 </button>
               </div>
             </form>

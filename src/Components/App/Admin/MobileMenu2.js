@@ -6,7 +6,7 @@ export default function MobileMenu({ status, setStatus }) {
   const hamburger = useRef(null);
   const mobileMenu = useRef(null);
   const navigate = useNavigate();
-  const { destroySession, HandleQuit } = useData();
+  const { destroySession, HandleQuit, currentBallot } = useData();
   async function handleLogout() {
     const status = await destroySession();
     if (status === "success") {
@@ -46,7 +46,7 @@ export default function MobileMenu({ status, setStatus }) {
       <div
         id="menu"
         ref={mobileMenu}
-        className="absolute top-0  poppins-medium tracking-tighter right-0 hidden flex-col z-4  w-1/2 h-52 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
+        className="absolute top-0  poppins-regular tracking-tighter right-0 hidden flex-col z-4  w-1/2 h-62 py-1 pt-10 pl-24 space-y-2 text-lg text-marine_blue uppercase bg-white"
       >
         <NavLink
           to="/admin"
@@ -55,7 +55,31 @@ export default function MobileMenu({ status, setStatus }) {
         >
           Ballots
         </NavLink>
-
+        {currentBallot.name && (
+          <NavLink
+            to={`/admin/ballots/${currentBallot.id}/voters`}
+            onClick={() => HandleClick()}
+            className={`hover:text-pink-500 hover:shake  btn `}
+          >
+            Voters
+          </NavLink>
+        )}
+        {currentBallot.name && (
+          <NavLink
+            to={`/admin/ballots/${currentBallot.id}/candidates`}
+            onClick={() => HandleClick()}
+            className={`hover:text-pink-500 hover:shake  btn `}
+          >
+            Candidates
+          </NavLink>
+        )}
+        <NavLink
+          to={`/admin/ballots/${currentBallot.id}/candidates`}
+          onClick={() => HandleClick()}
+          className={`hover:text-pink-500 hover:shake  btn `}
+        >
+          Settings
+        </NavLink>
         <a
           onClick={handleLogout}
           className={`hover:text-pink-500 hover:shake   btn  hover:cursor-pointer`}

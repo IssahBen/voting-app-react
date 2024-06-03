@@ -123,6 +123,33 @@ function DataProvider({ children }) {
     } finally {
     }
   }
+  async function destroyVoter(ballotId, voterId) {
+    try {
+      const res = await fetch(
+        `http://10.0.0.121:3000/api/v1/ballots/${ballotId}/voters/${voterId}`,
+        {
+          method: "delete",
+          body: JSON.stringify(),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.message) {
+        return "success";
+      }
+    } catch {
+      alert("there was an error Quit");
+    } finally {
+    }
+  }
   async function CreateBallot(obj) {
     try {
       const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots`, {
@@ -180,6 +207,36 @@ function DataProvider({ children }) {
     } finally {
     }
   }
+  async function CreateVoter(obj, id) {
+    try {
+      const res = await fetch(
+        `http://10.0.0.121:3000/api/v1/ballots/${id}/voters`,
+        {
+          method: "post",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.message) {
+        console.log(data.message);
+        return "success";
+      }
+      if (data.errors) {
+        alert(data.errors);
+      }
+    } catch {
+      alert("there was an error Quit");
+    } finally {
+    }
+  }
   async function UpdateBallot(obj, id) {
     try {
       const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots/${id}`, {
@@ -211,6 +268,36 @@ function DataProvider({ children }) {
     try {
       const res = await fetch(
         `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates/${cid}`,
+        {
+          method: "put",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.message) {
+        console.log(data.message);
+        return "success";
+      }
+      if (data.errors) {
+        alert(data.errors);
+      }
+    } catch {
+      alert("there was an error Quit");
+    } finally {
+    }
+  }
+  async function UpdateVoter(obj, id, cid) {
+    try {
+      const res = await fetch(
+        `http://10.0.0.121:3000/api/v1/ballots/${id}/voters/${cid}`,
         {
           method: "put",
           body: JSON.stringify(obj),
@@ -301,6 +388,9 @@ function DataProvider({ children }) {
         destroyCandidate,
         UpdateCandidate,
         CreateCandidate,
+        CreateVoter,
+        destroyVoter,
+        UpdateVoter,
       }}
     >
       {children}

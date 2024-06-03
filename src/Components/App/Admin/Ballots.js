@@ -81,7 +81,7 @@ function ActivePolls({ size }) {
     <div className="flex  poppins-bold w-full justify-between items-center  mt-5 mb-2  p-1 ">
       <div class="stats shadow">
         <div class="stat">
-          <div class="stat-title">Total Ballots</div>
+          <div class="stat-title">Ballots</div>
           <div class="stat-value">{size < 10 ? `0${size}` : size}</div>
         </div>
       </div>
