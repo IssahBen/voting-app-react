@@ -78,7 +78,7 @@ export default function MobileMenu({ status, setStatus }) {
           onClick={() => HandleClick()}
           className={`hover:text-pink-500 hover:shake  btn `}
         >
-          Settings
+          Edit Profile
         </NavLink>
         <a
           onClick={handleLogout}

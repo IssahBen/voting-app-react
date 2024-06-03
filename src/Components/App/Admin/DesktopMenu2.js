@@ -50,7 +50,7 @@ export default function DesktopMenu({ status, setStatus }) {
           to={`/admin/ballots/${currentBallot.id}/voters`}
           className={`hover:text-pink-500 `}
         >
-          Settings
+          Edit Profile
         </NavLink>
         <div className="mx-2 group-hover:border-b group-hover:border-blue-50 group-hover:shake"></div>
       </div>
