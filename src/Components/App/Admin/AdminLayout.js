@@ -8,20 +8,21 @@ function AdminLayout() {
     useData();
   const [status, setStatus] = useState("");
   useEffect(function () {
-    if(localStorage.getItem("token") && localStorage.getItem("user")){
-    const token = localStorage.getItem("token");
-    const userObj = JSON.parse(localStorage.getItem("user"));
-    setToken(token);
-    setEmail(userObj.email);
-    setRole(userObj.role);
-    setFirstName(userObj.first_name);
-    setLastName(userObj.last_name);}
+    if (localStorage.getItem("token") && localStorage.getItem("user")) {
+      const token = localStorage.getItem("token");
+      const userObj = JSON.parse(localStorage.getItem("user"));
+      setToken(token);
+      setEmail(userObj.email);
+      setRole(userObj.role);
+      setFirstName(userObj.first_name);
+      setLastName(userObj.last_name);
+    }
   }, []);
   return (
-    <div className="w-screen   h-screen overflow-scroll flex flex-col  admin ">
+    <div className="w-screen   h-screen overflow-y-auto flex flex-col  admin ">
       <Navbar status={status} setStatus={setStatus} />
-     
-      <Outlet/>
+
+      <Outlet />
     </div>
   );
 }

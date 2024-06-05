@@ -183,9 +183,8 @@ function DataProvider({ children }) {
         `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates`,
         {
           method: "post",
-          body: JSON.stringify(obj),
+          body: obj,
           headers: {
-            "Content-Type": "application/json",
             "X-User-Token": token,
             "X-User-Email": email,
           },
@@ -270,9 +269,8 @@ function DataProvider({ children }) {
         `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates/${cid}`,
         {
           method: "put",
-          body: JSON.stringify(obj),
+          body: obj,
           headers: {
-            "Content-Type": "application/json",
             "X-User-Token": token,
             "X-User-Email": email,
           },

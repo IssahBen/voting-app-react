@@ -8,6 +8,9 @@ export default function EditCandidate() {
   const { setIsLoading, UpdateCandidate } = useData();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState("");
+  const imageLink = file ? URL.createObjectURL(file) : image;
 
   async function GetCandidate(id, cid) {
     const token = localStorage.getItem("token");
@@ -33,6 +36,7 @@ export default function EditCandidate() {
       if (data) {
         setFirstName(data.first_name);
         setLastName(data.last_name);
+        data.image ? setImage(data.image) : setImage("");
         setIsLoading(false);
         return "success";
       }
@@ -46,8 +50,11 @@ export default function EditCandidate() {
   }, []);
   async function handleUpdate(e) {
     e.preventDefault();
-    const obj = { candidate: { first_name: firstName, last_name: lastName } };
-    const status = await UpdateCandidate(obj, id, cid);
+    let formData = new FormData();
+    formData.append("candidate[file]", file);
+    formData.append("candidate[first_name]", firstName);
+    formData.append("candidate[last_name]", lastName);
+    const status = await UpdateCandidate(formData, id, cid);
     if (status === "success") {
       navigate(-1);
     }
@@ -56,7 +63,7 @@ export default function EditCandidate() {
     navigate(-1);
   }
   return (
-    <div className="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0">
+    <div className="bg-black text-white flex h-auto flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0">
       <div className="text-foreground  poppins-bold text-2xl tracking-widest mx-auto flex items-center gap-2">
         <div>
           <svg
@@ -77,7 +84,7 @@ export default function EditCandidate() {
         Edit Candidate
       </div>
 
-      <div className="relative mt-12 w-full max-w-lg sm:mt-10">
+      <div className="relative mt-8 w-full max-w-lg sm:mt-5">
         <div
           className="relative -mb-px h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent"
           bis_skin_checked="1"
@@ -102,8 +109,8 @@ export default function EditCandidate() {
               </div>
             </button>
           </div>
-          <div class="p-6 pt-0 poppins-light">
-            <form onSubmit={handleUpdate}>
+          <div class="p-6 pt-0 poppins-light h-full">
+            <form onSubmit={handleUpdate} className="h-full">
               <div>
                 <div>
                   <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
@@ -154,6 +161,42 @@ export default function EditCandidate() {
                         onChange={(e) => setLastName(e.target.value)}
                         class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
                       ></input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <div>
+                  <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+                    <div class="flex justify-between">
+                      <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
+                        Picture
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input
+                        type="file"
+                        name="text"
+                        onChange={(e) => setFile(e.target.files[0])}
+                        class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <div>
+                  <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+                    <div class="flex justify-between">
+                      <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
+                        Preview
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <img
+                        src={imageLink}
+                        class="block  w-[100px] h-[100px] border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                      />
                     </div>
                   </div>
                 </div>

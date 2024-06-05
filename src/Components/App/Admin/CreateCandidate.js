@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useData } from "../../../Context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -8,10 +8,16 @@ export default function CreateCandidate() {
   const { CreateCandidate } = useData();
   const [firstName, setfirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [image, setImage] = useState(null);
+  const imageLink = image !== null ? URL.createObjectURL(image) : "";
   async function handleCreate(e) {
     e.preventDefault();
-    const obj = { candidate: { first_name: firstName, last_name: lastName } };
-    const status = await CreateCandidate(obj, id);
+
+    let formData = new FormData();
+    formData.append("candidate[file]", image);
+    formData.append("candidate[first_name]", firstName);
+    formData.append("candidate[last_name]", lastName);
+    const status = await CreateCandidate(formData, id);
     if (status === "success") {
       navigate(-1);
     }
@@ -19,8 +25,12 @@ export default function CreateCandidate() {
   function HandleNavigation() {
     navigate(-1);
   }
+  function HandleChange(e) {
+    console.log(e.target.files[0]);
+    setImage();
+  }
   return (
-    <div class="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0 tacking-widest">
+    <div class="bg-black text-white flex     flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0 tacking-widest">
       <div class="text-foreground poppins-bold text-2xl  mx-auto flex items-center gap-2">
         <div>
           <svg
@@ -41,7 +51,7 @@ export default function CreateCandidate() {
         Add Candidate
       </div>
 
-      <div class="relative mt-12 w-full max-w-lg sm:mt-10">
+      <div class="relative mt-8 w-full h-full max-w-lg sm:mt-5">
         <div
           class="relative -mb-px h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent"
           bis_skin_checked="1"
@@ -64,7 +74,7 @@ export default function CreateCandidate() {
               </div>
             </button>
           </div>
-          <div class="p-6 pt-0 poppins-light">
+          <div class="p-6 pt-0 poppins-light ">
             <form onSubmit={handleCreate}>
               <div>
                 <div>
@@ -100,7 +110,7 @@ export default function CreateCandidate() {
                   </div>
                 </div>
               </div>
-              <div class="mt-4">
+              <div class="">
                 <div>
                   <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
                     <div class="flex justify-between">
@@ -120,8 +130,44 @@ export default function CreateCandidate() {
                   </div>
                 </div>
               </div>
+              <div class="">
+                <div>
+                  <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+                    <div class="flex justify-between">
+                      <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
+                        Picture
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input
+                        type="file"
+                        name="text"
+                        onChange={(e) => setImage(e.target.files[0])}
+                        class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <div>
+                  <div class="group relative rounded-lg border focus-within:border-sky-200 px-3 pb-1.5 pt-2.5 duration-200 focus-within:ring focus-within:ring-sky-300/30">
+                    <div class="flex justify-between">
+                      <label class="text-xs font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
+                        Preview
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <img
+                        src={imageLink}
+                        class="block  w-[100px] h-[100px] border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <div class="mt-4 flex items-center justify-center gap-x-2">
+              <div class="  mt-4 flex items-center justify-center gap-x-2">
                 <button
                   class="font-semibold tracking-widest hover:bg-red-700 hover:text-white hover:ring hover:ring-red-700 transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2"
                   type="submit"
