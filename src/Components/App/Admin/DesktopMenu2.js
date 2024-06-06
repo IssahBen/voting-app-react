@@ -47,7 +47,7 @@ export default function DesktopMenu({ status, setStatus }) {
       )}
       <div className="group hover:btn">
         <NavLink
-          to={`/admin/ballots/${currentBallot.id}/voters`}
+          to={`/admin/ballots/profile`}
           className={`hover:text-pink-500 `}
         >
           Edit Profile

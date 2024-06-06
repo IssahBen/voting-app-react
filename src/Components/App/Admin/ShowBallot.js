@@ -6,8 +6,9 @@ import { CandidateItem } from "./CandidateItem";
 
 export default function ShowBallot() {
   const { id } = useParams();
-  const { isLoading, setIsLoading, currentBallot } = useData();
+  const { isLoading, setIsLoading, currentBallot, UpdateStatus } = useData();
   const [candidates, setCandidates] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(
     function () {
@@ -47,6 +48,12 @@ export default function ShowBallot() {
     },
     [id, setIsLoading]
   );
+  async function HandleStatus() {
+    const status = await UpdateStatus();
+    if (status === "success") {
+      alert("ballot Active");
+    }
+  }
   return (
     <div className="w-full h-full">
       <Header title={currentBallot.name} />
@@ -57,6 +64,17 @@ export default function ShowBallot() {
       ) : (
         ""
       )}
+      <div className="flex justify-center items-center w-full mt-5 mb-5">
+        <p className="pr-5 poppins-bold text-2xl text-gray-500">Status:</p>
+        <button
+          onClick={HandleStatus}
+          className={`sbutton rounded-full px-2 ${
+            currentBallot.status === "inactive" ? "bg-red-600" : "bg-green-700"
+          }`}
+        >
+          {currentBallot.status}
+        </button>
+      </div>
       <div className="w-full h-full grid grid-cols-2   gap-x-0.5 md:grid-cols-3">
         {candidates.map((candidate) => {
           return (

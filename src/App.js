@@ -13,6 +13,7 @@ import CreateCandidate from "./Components/App/Admin/CreateCandidate";
 import Voters from "./Components/App/Admin/Voters";
 import CreateVoter from "./Components/App/Admin/CreateVoter";
 import EditVoter from "./Components/App/Admin/EditVoter";
+import EditAdminProfile from "./Components/App/Admin/EditAdminProfile";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="ballots/:id/voters" element={<Voters />} />
             <Route path="ballots/:id/voters/create" element={<CreateVoter />} />
             <Route path="ballots/:id/voters/:vid" element={<EditVoter />} />
+            <Route path="ballots/profile" element={<EditAdminProfile />} />
           </Route>
           <Route path="voter" element={<VoterLayout />}>
             <Route index element={<Navigate replace to="vote" />} />

@@ -951,3 +951,37 @@
   transition-duration: 0.3s;
   font-size: 2px;
 }
+.sbutton {
+  position: relative;
+
+  box-shadow: rgb(121, 18, 55) 0px 4px 0px 0px;
+
+  background-repeat: no-repeat;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  height: 49px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sbutton::before {
+  content: "";
+  background-color: rgb(248, 50, 93);
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: width 700ms ease-in-out;
+  display: inline-block;
+}
+
+.sbutton:hover::before {
+  width: 100%;
+}

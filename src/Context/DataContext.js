@@ -292,6 +292,33 @@ function DataProvider({ children }) {
     } finally {
     }
   }
+  async function UpdateUser(obj) {
+    try {
+      const res = await fetch(`http://10.0.0.121:3000/api/v1/edit`, {
+        method: "put",
+        body: obj,
+        headers: {
+          "X-User-Token": token,
+          "X-User-Email": email,
+        },
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.message) {
+        console.log(data.message);
+        return "success";
+      }
+      if (data.errors) {
+        alert(data.errors);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("there was an error Quit");
+    } finally {
+    }
+  }
   async function UpdateVoter(obj, id, cid) {
     try {
       const res = await fetch(
@@ -318,6 +345,36 @@ function DataProvider({ children }) {
         alert(data.errors);
       }
     } catch {
+      alert("there was an error Quit");
+    } finally {
+    }
+  }
+  async function UpdateStatus() {
+    try {
+      const res = await fetch(
+        `http://10.0.0.121:3000/api/v1/activate?ballot_id=${currentBallot.id}`,
+        {
+          method: "put",
+          headers: {
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.id) {
+        console.log(data.message);
+        setCurrentBallot(data);
+        return "success";
+      }
+      if (data.errors) {
+        alert(data.errors);
+      }
+    } catch (error) {
+      console.error(error);
       alert("there was an error Quit");
     } finally {
     }
@@ -389,6 +446,8 @@ function DataProvider({ children }) {
         CreateVoter,
         destroyVoter,
         UpdateVoter,
+        UpdateUser,
+        UpdateStatus,
       }}
     >
       {children}
