@@ -3,7 +3,7 @@ import { useData } from "../../Context/DataContext";
 
 export default function DesktopMenu({ status, setStatus }) {
   const navigate = useNavigate();
-  const { destroySession, HandleQuit, loggedIn } = useData();
+  const { destroySession, HandleQuit, loggedIn, role } = useData();
   async function handleLogout() {
     const status = await destroySession();
     if (status === "success") {
@@ -31,9 +31,13 @@ export default function DesktopMenu({ status, setStatus }) {
         <div className="mx-2 group-hover:border-b group-hover:border-blue-50 group-hover:shake"></div>
       </div>
       <div className="group hover:btn">
-        {loggedIn ? (
+        {loggedIn && role === "official" ? (
           <NavLink to="admin" className={`hover:text-pink-500 `}>
             Admin
+          </NavLink>
+        ) : loggedIn && role === "voter" ? (
+          <NavLink to="voter" className={`hover:text-pink-500 `}>
+            Voter
           </NavLink>
         ) : (
           <a

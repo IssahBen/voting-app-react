@@ -29,10 +29,11 @@ function Signup({ setStatus }) {
         role: role,
       },
     };
-    console.log(obj);
+
     const status = await createUser(obj);
+
     console.log(status);
-    console.log(role);
+    console.log(5);
 
     if (status === "voter") navigate("/voter");
     if (status === "official") navigate("/admin");

@@ -7,7 +7,7 @@ export default function MobileMenu({ status, setStatus }) {
   const mobileMenu = useRef(null);
 
   const navigate = useNavigate();
-  const { destroySession, HandleQuit, loggedIn } = useData();
+  const { destroySession, HandleQuit, loggedIn, role } = useData();
   async function handleLogout() {
     const status = await destroySession();
     if (status === "success") {
@@ -66,13 +66,21 @@ export default function MobileMenu({ status, setStatus }) {
             Sign in
           </a>
         )}
-        {loggedIn ? (
+        {loggedIn && role === "official" ? (
           <NavLink
             onClick={HandleClick()}
             to="admin"
             className={`hover:text-pink-500 hover:shake  btn `}
           >
             Admin
+          </NavLink>
+        ) : loggedIn && role === "voter" ? (
+          <NavLink
+            onClick={HandleClick()}
+            to="voter"
+            className={`hover:text-pink-500 hover:shake  btn `}
+          >
+            Voter
           </NavLink>
         ) : (
           <a

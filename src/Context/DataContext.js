@@ -7,7 +7,7 @@ function DataProvider({ children }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("voter");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -34,15 +34,23 @@ function DataProvider({ children }) {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
+      alert(JSON.stringify(data));
       if (data.token) {
+        console.log(2);
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
+
+        if (data.user.role === "voter") {
+          localStorage.setItem("ballotId", data.ballotId);
+        }
+        console.log(data);
         return data.user.role;
       } else {
         alert(data.message);
         return "error";
       }
-    } catch {
+    } catch (error) {
+      console.error(error);
       alert("there was an error loading data..");
       return "error";
     } finally {
@@ -400,12 +408,16 @@ function DataProvider({ children }) {
       if (data.token) {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
+        if (data.user.role === "voter") {
+          localStorage.setItem("ballot_id", data.ballotId);
+        }
         return data.user.role;
       } else {
         alert(data.message);
         return "error";
       }
-    } catch {
+    } catch (error) {
+      console.error(error);
       alert("there was an error loading data..");
       return "error";
     } finally {
