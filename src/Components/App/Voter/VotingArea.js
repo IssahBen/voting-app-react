@@ -7,7 +7,7 @@ function VotingArea() {
   const [candidates, setCandidates] = useState([]);
   const [name, setName] = useState();
   const [ballotStatus, setBallotStatus] = useState("inactive");
-  const { isLoading, setIsLoading } = useData();
+  const { isLoading, setIsLoading, setErrorMessage } = useData();
   async function GetBallotInfo() {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("ballot_id");
@@ -38,7 +38,7 @@ function VotingArea() {
         return "success";
       }
     } catch {
-      alert("there was an error trying to fetch data");
+      setErrorMessage("There was an error trying to fetch data");
     } finally {
     }
   }

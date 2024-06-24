@@ -12,6 +12,9 @@ function DataProvider({ children }) {
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentBallot, setCurrentBallot] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [infoMessage, setInfoMessage] = useState("");
 
   const loggedIn = token === "" ? false : true;
   useEffect(function () {
@@ -36,22 +39,21 @@ function DataProvider({ children }) {
       const data = await res.json();
       alert(JSON.stringify(data));
       if (data.token) {
-        console.log(2);
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
 
         if (data.user.role === "voter") {
           localStorage.setItem("ballotId", data.ballotId);
         }
-        console.log(data);
+
         return data.user.role;
       } else {
-        alert(data.message);
+        setErrorMessage(data.message);
         return "error";
       }
     } catch (error) {
       console.error(error);
-      alert("there was an error loading data..");
+      setErrorMessage("there was an error loading data..");
       return "error";
     } finally {
       setIsLoading(false);
@@ -387,6 +389,7 @@ function DataProvider({ children }) {
     } finally {
     }
   }
+
   function HandleQuit() {
     setEmail("");
     setPassword("");
@@ -413,12 +416,12 @@ function DataProvider({ children }) {
         }
         return data.user.role;
       } else {
-        alert(data.message);
+        setErrorMessage(data.message);
         return "error";
       }
     } catch (error) {
       console.error(error);
-      alert("there was an error loading data..");
+      setErrorMessage("there was an error loading data..");
       return "error";
     } finally {
       setIsLoading(false);
@@ -460,6 +463,12 @@ function DataProvider({ children }) {
         UpdateVoter,
         UpdateUser,
         UpdateStatus,
+        errorMessage,
+        setErrorMessage,
+        successMessage,
+        setSuccessMessage,
+        infoMessage,
+        setInfoMessage,
       }}
     >
       {children}

@@ -985,3 +985,13 @@
 .sbutton:hover::before {
   width: 100%;
 }
+
+.fade {
+  animation: fadeout-anim 10s linear forwards;
+}
+
+@keyframes fadeout-anim {
+  100% {
+    opacity: 0;
+  }
+}
