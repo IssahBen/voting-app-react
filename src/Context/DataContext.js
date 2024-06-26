@@ -52,8 +52,7 @@ function DataProvider({ children }) {
         return "error";
       }
     } catch (error) {
-      console.error(error);
-      setErrorMessage("there was an error loading data..");
+      setErrorMessage("There was an error loading data..");
       return "error";
     } finally {
       setIsLoading(false);
@@ -78,7 +77,7 @@ function DataProvider({ children }) {
         return "success";
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error.");
     } finally {
     }
   }
@@ -94,15 +93,16 @@ function DataProvider({ children }) {
         },
       });
       const data = await res.json();
-      console.log(data);
+
       if (!res.ok) {
         return "error";
       }
       if (data.message) {
+        setSuccessMessage(data.message);
         return "success";
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error");
     } finally {
     }
   }
@@ -121,15 +121,16 @@ function DataProvider({ children }) {
         }
       );
       const data = await res.json();
-      console.log(data);
+
       if (!res.ok) {
         return "error";
       }
       if (data.message) {
+        setSuccessMessage(data.message);
         return "success";
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error");
     } finally {
     }
   }
@@ -148,7 +149,7 @@ function DataProvider({ children }) {
         }
       );
       const data = await res.json();
-      console.log(data);
+
       if (!res.ok) {
         return "error";
       }
@@ -156,7 +157,7 @@ function DataProvider({ children }) {
         return "success";
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error");
     } finally {
     }
   }
@@ -176,14 +177,14 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.message) {
-        console.log(data.message);
+        setSuccessMessage(data.message);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error.");
     } finally {
     }
   }
@@ -205,14 +206,14 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.message) {
-        console.log(data.message);
+        setSuccessMessage(data.message);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error");
     } finally {
     }
   }
@@ -235,14 +236,43 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.message) {
-        console.log(data.message);
+        setSuccessMessage(data.message);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error");
+    } finally {
+    }
+  }
+  async function CreateVoterCsv(obj, id) {
+    try {
+      const res = await fetch(
+        `http://10.0.0.121:3000/api/v1/ballots/${id}/upload`,
+        {
+          method: "post",
+          body: obj,
+          headers: {
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        return "error";
+      }
+      if (data.message) {
+        setSuccessMessage(data.message);
+        return "success";
+      }
+      if (data.errors) {
+        setErrorMessage(data.errors);
+      }
+    } catch {
+      setErrorMessage("There was an error");
     } finally {
     }
   }
@@ -262,14 +292,14 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.message) {
-        console.log(data.message);
+        setSuccessMessage(data.message);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("there was an error");
     } finally {
     }
   }
@@ -290,21 +320,22 @@ function DataProvider({ children }) {
       if (!res.ok) {
         return "error";
       }
+
       if (data.message) {
-        console.log(data.message);
+        setSuccessMessage(data.message);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error");
     } finally {
     }
   }
   async function UpdateUser(obj) {
     try {
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/edit`, {
+      const res = await fetch(`http://10.0.0.121:3000/api/v1/update`, {
         method: "put",
         body: obj,
         headers: {
@@ -317,15 +348,13 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.message) {
-        console.log(data.message);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch (error) {
-      console.error(error);
-      alert("there was an error Quit");
+      setErrorMessage("there was an error Quit");
     } finally {
     }
   }
@@ -348,14 +377,14 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.message) {
-        console.log(data.message);
+        setSuccessMessage(data.message);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch {
-      alert("there was an error Quit");
+      setErrorMessage("There was an error.");
     } finally {
     }
   }
@@ -376,16 +405,15 @@ function DataProvider({ children }) {
         return "error";
       }
       if (data.id) {
-        console.log(data.message);
+        setSuccessMessage(data.message);
         setCurrentBallot(data);
         return "success";
       }
       if (data.errors) {
-        alert(data.errors);
+        setErrorMessage(data.errors);
       }
     } catch (error) {
-      console.error(error);
-      alert("there was an error Quit");
+      setErrorMessage("There was an error.");
     } finally {
     }
   }
@@ -407,7 +435,7 @@ function DataProvider({ children }) {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
-      console.log(data);
+
       if (data.token) {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
@@ -469,6 +497,7 @@ function DataProvider({ children }) {
         setSuccessMessage,
         infoMessage,
         setInfoMessage,
+        CreateVoterCsv,
       }}
     >
       {children}

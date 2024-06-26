@@ -109,8 +109,8 @@ export default function CreateBallot() {
                       </label>
                     </div>
                     <div class="flex items-center">
-                      <input
-                        type="textarea"
+                      <textarea
+                        type="text"
                         name="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}

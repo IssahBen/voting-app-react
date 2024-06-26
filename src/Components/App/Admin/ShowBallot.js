@@ -6,12 +6,50 @@ import { CandidateItem } from "./CandidateItem";
 
 export default function ShowBallot() {
   const { id } = useParams();
-  const { isLoading, setIsLoading, currentBallot, UpdateStatus } = useData();
+  const {
+    isLoading,
+    setIsLoading,
+    setCurrentBallot,
+    currentBallot,
+    UpdateStatus,
+    setErrorMessage,
+    setInfoMessage,
+  } = useData();
   const [candidates, setCandidates] = useState([]);
   const navigate = useNavigate();
 
   useEffect(
     function () {
+      async function GetBallot(id) {
+        const token = localStorage.getItem("token");
+        const email = JSON.parse(localStorage.getItem("user")).email;
+        setIsLoading(true);
+        try {
+          const res = await fetch(
+            `http://10.0.0.121:3000/api/v1/ballots/${id}`,
+            {
+              method: "get",
+              body: JSON.stringify(),
+              headers: {
+                "Content-Type": "application/json",
+                "X-User-Token": token,
+                "X-User-Email": email,
+              },
+            }
+          );
+          const data = await res.json();
+          if (!res.ok) {
+            return "error";
+          }
+          if (data.ballot) {
+            setCurrentBallot(data.ballot);
+            setIsLoading(false);
+          }
+        } catch {
+          setErrorMessage("There was an error trying to fetch data");
+        } finally {
+        }
+      }
       async function GetCandidates(id) {
         const token = localStorage.getItem("token");
         const email = JSON.parse(localStorage.getItem("user")).email;
@@ -39,19 +77,20 @@ export default function ShowBallot() {
             return "success";
           }
         } catch (error) {
-          console.error(error);
+          setErrorMessage(error);
         } finally {
         }
       }
       console.log(2);
       GetCandidates(id);
+      GetBallot(id);
     },
-    [id, setIsLoading]
+    [id, setCurrentBallot, setErrorMessage, setIsLoading]
   );
   async function HandleStatus() {
     const status = await UpdateStatus();
     if (status === "success") {
-      alert("ballot Active");
+      setInfoMessage("Ballot status updated");
     }
   }
   return (
@@ -94,10 +133,10 @@ function EmptyCandidateMessage() {
   return (
     <div className="flex pulse flex-col items-center w-full mt-10">
       <p className="w-42 font-bold text-2xl text-blue-950 text-center">
-        You seem to have no Ballots
+        You seem to have no Candidates
       </p>
       <NavLink to="/admin/create" className=" rounded-full p-2 bg-red-500">
-        + Create one
+        + Add
       </NavLink>
     </div>
   );

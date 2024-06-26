@@ -5,10 +5,11 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function CreateVoter() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { CreateVoter } = useData();
+  const { CreateVoter, CreateVoterCsv } = useData();
   const [firstName, setfirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [file, setFile] = useState(null);
   async function handleCreate(e) {
     e.preventDefault();
     const obj = {
@@ -21,6 +22,15 @@ export default function CreateVoter() {
   }
   function HandleNavigation() {
     navigate(-1);
+  }
+  async function handleCsv(e) {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append("csv_file", file);
+    const status = await CreateVoterCsv(formData, id);
+    if (status === "success") {
+      navigate(-1);
+    }
   }
   return (
     <div class="bg-black text-white flex min-h-screen flex-col items-center pt-16 sm:justify-center mt-5 sm:pt-0 tacking-widest">
@@ -150,6 +160,30 @@ export default function CreateVoter() {
                   type="submit"
                 >
                   Add
+                </button>
+              </div>
+            </form>
+            <div className="flex w-full items-start  text-xl font-semibold ">
+              Add CSV file
+            </div>
+            <form onSubmit={handleCsv}>
+              <label class="text-xs tracking-widest  font-medium text-muted-foreground group-focus-within:text-white text-gray-400">
+                File
+              </label>
+              <div class="flex items-center">
+                <input
+                  type="file"
+                  name="text"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  class="block  w-full border-0 bg-transparent p-0 text-sm file:my-1 placeholder:text-muted-foreground/90 focus:outline-none focus:ring-0 focus:ring-teal-500 sm:leading-7 text-foreground"
+                />
+              </div>
+              <div class="mt-4 flex items-center justify-center gap-x-2">
+                <button
+                  class="font-semibold tracking-widest hover:bg-red-700 hover:text-white hover:ring hover:ring-red-700 transition duration-300 inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black h-10 px-4 py-2"
+                  type="submit"
+                >
+                  Add FIle
                 </button>
               </div>
             </form>

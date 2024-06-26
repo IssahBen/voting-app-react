@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Modal from "./Modal";
 export default function BallotItem({ ballot, GetBallots }) {
   const navigate = useNavigate();
-  const { setCurrentBallot } = useData();
+
   const modal = useRef(null);
 
   function handelEdit() {
@@ -14,18 +14,12 @@ export default function BallotItem({ ballot, GetBallots }) {
 
   return (
     <div class=" relative max-w-sm w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-      <NavLink
-        to={`/admin/ballots/${ballot.id}`}
-        onClick={setCurrentBallot(ballot.name)}
-      >
+      <NavLink to={`/admin/ballots/${ballot.id}`}>
         {" "}
         <img className="rounded-t-lg h-72 w-full" src={card} alt="" />
       </NavLink>
       <div class="p-5">
-        <NavLink
-          to={`/admin/ballots/${ballot.id}`}
-          onClick={setCurrentBallot(ballot)}
-        >
+        <NavLink to={`/admin/ballots/${ballot.id}`}>
           <h5 class="mb-2 poppins-bold text-2xl font-bold tracking-tight text-black dark:text-white">
             {ballot.name}
           </h5>

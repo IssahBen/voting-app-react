@@ -29,7 +29,7 @@ export default function EditBallot() {
       }
       if (data) {
         setTitle(data.name);
-        setDescription(data.name);
+        setDescription(data.description);
         setIsLoading(false);
         return "success";
       }

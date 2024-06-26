@@ -8,7 +8,7 @@ export default function EditAdminProfile() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { UpdateUser } = useData();
+  const { UpdateUser, setSuccessMessage } = useData();
   const navigate = useNavigate();
   useEffect(function () {
     setEmail(JSON.parse(localStorage.getItem("user")).email);
@@ -31,7 +31,7 @@ export default function EditAdminProfile() {
 
       const status = await UpdateUser(formData);
       if (status === "success") {
-        alert("User details Updated");
+        setSuccessMessage("User details Updated Will reflect on next sign in");
         navigate("/admin/ballots");
       }
     }
@@ -132,7 +132,7 @@ export default function EditAdminProfile() {
           for="remember"
           class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
         >
-          There will be updates without the current password
+          There will be no updates without the current password
         </label>
       </div>
       <button
