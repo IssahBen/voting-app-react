@@ -26,7 +26,9 @@ export default function ShowBallot() {
         setIsLoading(true);
         try {
           const res = await fetch(
-            `http://10.0.0.121:3000/api/v1/ballots/${id}`,
+            `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}`,
             {
               method: "get",
               body: JSON.stringify(),
@@ -56,7 +58,9 @@ export default function ShowBallot() {
         setIsLoading(true);
         try {
           const res = await fetch(
-            `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates`,
+            `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}/candidates`,
             {
               method: "get",
               headers: {

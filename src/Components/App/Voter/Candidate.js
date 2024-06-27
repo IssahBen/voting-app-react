@@ -11,7 +11,9 @@ export function Candidate({ candidate }) {
     const email = JSON.parse(localStorage.getItem("user")).email;
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/vote?candidate_id=${candidateId}`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/vote?candidate_id=${candidateId}`,
         {
           method: "put",
           headers: {

@@ -66,7 +66,7 @@ export default function MobileMenu({ status, setStatus }) {
         )}
         {currentBallot.name && (
           <NavLink
-            to={`/admin/ballots/${currentBallot.id}/candidates`}
+            to={`/admin/ballots/${currentBallot.id}`}
             onClick={() => HandleClick()}
             className={`hover:text-pink-500 hover:shake  btn `}
           >

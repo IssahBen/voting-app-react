@@ -8,11 +8,10 @@ import Success from "../Messages/Success";
 function VoterLayout() {
   const {
     successMessage,
-    errorMessage,
+
     infoMessage,
     setInfoMessage,
     setSuccessMessage,
-    setErrorMessage,
   } = useData();
   return (
     <div className="w-screen   h-screen overflow-y-auto flex flex-col  admin ">

@@ -14,15 +14,20 @@ export default function EditBallot() {
     const email = JSON.parse(localStorage.getItem("user")).email;
     setIsLoading(true);
     try {
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots/${id}`, {
-        method: "get",
-        body: JSON.stringify(),
-        headers: {
-          "Content-Type": "application/json",
-          "X-User-Token": token,
-          "X-User-Email": email,
-        },
-      });
+      const res = await fetch(
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}`,
+        {
+          method: "get",
+          body: JSON.stringify(),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         return "error";

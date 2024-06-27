@@ -16,7 +16,9 @@ export default function EditVoter() {
     setIsLoading(true);
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/voters/${vid}`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}/voters/${vid}`,
         {
           method: "get",
           body: JSON.stringify(),

@@ -26,7 +26,7 @@ export default function DesktopMenu({ status, setStatus }) {
       {currentBallot.name && (
         <div className="group hover:btn">
           <NavLink
-            to={`/admin/ballots/${currentBallot.id}/candidates`}
+            to={`/admin/ballots/${currentBallot.id}`}
             className={`hover:text-pink-500 `}
           >
             Candidates

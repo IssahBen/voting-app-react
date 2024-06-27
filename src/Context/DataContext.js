@@ -31,13 +31,18 @@ function DataProvider({ children }) {
   async function createUser(obj) {
     try {
       setIsLoading(true);
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/signup`, {
-        method: "Post",
-        body: JSON.stringify(obj),
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/signup`,
+        {
+          method: "Post",
+          body: JSON.stringify(obj),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       const data = await res.json();
-      alert(JSON.stringify(data));
+
       if (data.token) {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
@@ -60,15 +65,20 @@ function DataProvider({ children }) {
   }
   async function destroySession() {
     try {
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/logout`, {
-        method: "delete",
-        body: JSON.stringify(),
-        headers: {
-          "Content-Type": "application/json",
-          "X-User-Token": token,
-          "X-User-Email": email,
-        },
-      });
+      const res = await fetch(
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/logout`,
+        {
+          method: "delete",
+          body: JSON.stringify(),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         return "error";
@@ -83,15 +93,20 @@ function DataProvider({ children }) {
   }
   async function destroyBallot(id) {
     try {
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots/${id}`, {
-        method: "delete",
-        body: JSON.stringify({ id: id }),
-        headers: {
-          "Content-Type": "application/json",
-          "X-User-Token": token,
-          "X-User-Email": email,
-        },
-      });
+      const res = await fetch(
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}`,
+        {
+          method: "delete",
+          body: JSON.stringify({ id: id }),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
       const data = await res.json();
 
       if (!res.ok) {
@@ -109,7 +124,9 @@ function DataProvider({ children }) {
   async function destroyCandidate(ballotId, candidateId) {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${ballotId}/candidates/${candidateId}`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${ballotId}/candidates/${candidateId}`,
         {
           method: "delete",
           body: JSON.stringify(),
@@ -137,7 +154,9 @@ function DataProvider({ children }) {
   async function destroyVoter(ballotId, voterId) {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${ballotId}/voters/${voterId}`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${ballotId}/voters/${voterId}`,
         {
           method: "delete",
           body: JSON.stringify(),
@@ -191,7 +210,9 @@ function DataProvider({ children }) {
   async function CreateCandidate(obj, id) {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}/candidates`,
         {
           method: "post",
           body: obj,
@@ -220,7 +241,9 @@ function DataProvider({ children }) {
   async function CreateVoter(obj, id) {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/voters`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}/voters`,
         {
           method: "post",
           body: JSON.stringify(obj),
@@ -250,7 +273,9 @@ function DataProvider({ children }) {
   async function CreateVoterCsv(obj, id) {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/upload`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}/upload`,
         {
           method: "post",
           body: obj,
@@ -278,15 +303,20 @@ function DataProvider({ children }) {
   }
   async function UpdateBallot(obj, id) {
     try {
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/ballots/${id}`, {
-        method: "put",
-        body: JSON.stringify(obj),
-        headers: {
-          "Content-Type": "application/json",
-          "X-User-Token": token,
-          "X-User-Email": email,
-        },
-      });
+      const res = await fetch(
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}`,
+        {
+          method: "put",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         return "error";
@@ -306,7 +336,9 @@ function DataProvider({ children }) {
   async function UpdateCandidate(obj, id, cid) {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates/${cid}`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}/candidates/${cid}`,
         {
           method: "put",
           body: obj,
@@ -335,14 +367,19 @@ function DataProvider({ children }) {
   }
   async function UpdateUser(obj) {
     try {
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/update`, {
-        method: "put",
-        body: obj,
-        headers: {
-          "X-User-Token": token,
-          "X-User-Email": email,
-        },
-      });
+      const res = await fetch(
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/update`,
+        {
+          method: "put",
+          body: obj,
+          headers: {
+            "X-User-Token": token,
+            "X-User-Email": email,
+          },
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         return "error";
@@ -361,7 +398,9 @@ function DataProvider({ children }) {
   async function UpdateVoter(obj, id, cid) {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/voters/${cid}`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/ballots/${id}/voters/${cid}`,
         {
           method: "put",
           body: JSON.stringify(obj),
@@ -391,7 +430,9 @@ function DataProvider({ children }) {
   async function UpdateStatus() {
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/activate?ballot_id=${currentBallot.id}`,
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/activate?ballot_id=${currentBallot.id}`,
         {
           method: "put",
           headers: {
@@ -429,11 +470,16 @@ function DataProvider({ children }) {
   async function Login(obj) {
     try {
       setIsLoading(true);
-      const res = await fetch(`http://10.0.0.121:3000/api/v1/login`, {
-        method: "Post",
-        body: JSON.stringify(obj),
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `
+https://wevotepushapi-0e45561659e2.herokuapp.com
+/api/v1/login`,
+        {
+          method: "Post",
+          body: JSON.stringify(obj),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       const data = await res.json();
 
       if (data.token) {
