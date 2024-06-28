@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
     function () {
       if (!loggedIn) {
         setErrorMessage("Login or SignUp");
-        navigate(-1);
+        navigate("/");
       }
     },
     [loggedIn, navigate, setErrorMessage]
