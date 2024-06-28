@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function EditCandidate() {
   const { id, cid } = useParams();
   const navigate = useNavigate();
-  const { setIsLoading, UpdateCandidate } = useData();
+  const { setIsLoading, UpdateCandidate, setErrorMessage } = useData();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [file, setFile] = useState(null);
@@ -18,7 +18,7 @@ export default function EditCandidate() {
     setIsLoading(true);
     try {
       const res = await fetch(
-        `http://10.0.0.121:3000/api/v1/ballots/${id}/candidates/${cid}`,
+        `https://wevotepushapi-0e45561659e2.herokuapp.com/api/v1/ballots/${id}/candidates/${cid}`,
         {
           method: "get",
           body: JSON.stringify(),
@@ -41,7 +41,7 @@ export default function EditCandidate() {
         return "success";
       }
     } catch {
-      alert("there was an error trying to fetch data");
+      setErrorMessage("there was an error trying to fetch data");
     } finally {
     }
   }

@@ -231,7 +231,7 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
         return "error";
       }
       if (data.message) {
-        setSuccessMessage(data.message);
+        setSuccessMessage("success");
         return "success";
       }
       if (data.errors) {
