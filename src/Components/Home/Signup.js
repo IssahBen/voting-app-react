@@ -149,7 +149,7 @@ function Signup({ setStatus }) {
                   Role
                 </label>
                 <select
-                  value={role}
+                  value={"voter"}
                   onChange={(e) => setRole(e.target.value)}
                   className="  divide-y w-full content-center text-base py-1 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                 >
