@@ -35,7 +35,7 @@ function Signup({ setStatus }) {
     console.log(status);
     console.log(5);
 
-    if (status === "voter") navigate("/voter");
+    if (status === "voter") navigate("/voter/vote");
     if (status === "official") navigate("/admin");
   }
   return (
