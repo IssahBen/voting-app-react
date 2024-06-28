@@ -46,6 +46,7 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
       if (data.token) {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
+        setLoggedIn(true);
 
         if (data.user.role === "voter") {
           localStorage.setItem("ballotId", data.ballotId);
