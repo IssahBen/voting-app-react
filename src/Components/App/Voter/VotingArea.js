@@ -10,7 +10,7 @@ function VotingArea() {
   const { isLoading, setIsLoading, setErrorMessage } = useData();
   async function GetBallotInfo() {
     const token = localStorage.getItem("token");
-    const id = localStorage.getItem("ballot_id");
+    const id = localStorage.getItem("ballotId");
     const email = JSON.parse(localStorage.getItem("user")).email;
     setIsLoading(true);
     try {
