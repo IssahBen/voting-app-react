@@ -16,7 +16,7 @@ function DataProvider({ children }) {
   const [successMessage, setSuccessMessage] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
-  const loggedIn = token === "" ? false : true;
+  const [loggedIn, setLoggedIn] = useState(false);
   useEffect(function () {
     if (localStorage.getItem("token") && localStorage.getItem("user")) {
       const token = localStorage.getItem("token");
@@ -84,6 +84,7 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
         return "error";
       }
       if (data.message) {
+        setLoggedIn(false);
         return "success";
       }
     } catch {
@@ -485,6 +486,7 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
       if (data.token) {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
+        setLoggedIn(true);
         if (data.user.role === "voter") {
           localStorage.setItem("ballot_id", data.ballotId);
         }

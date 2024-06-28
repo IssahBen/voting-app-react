@@ -14,6 +14,7 @@ import Voters from "./Components/App/Admin/Voters";
 import CreateVoter from "./Components/App/Admin/CreateVoter";
 import EditVoter from "./Components/App/Admin/EditVoter";
 import EditAdminProfile from "./Components/App/Admin/EditAdminProfile";
+import ProtectedRoute from "./Components/Home/ProtectedRoute";
 
 function App() {
   return (
@@ -21,7 +22,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="admin" element={<AdminLayout />}>
+          <Route
+            path="admin"
+            element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="ballots" />} />
             <Route path="ballots" element={<Ballots />} />
             <Route path="ballots/:id" element={<ShowBallot />} />
@@ -37,7 +45,14 @@ function App() {
             <Route path="ballots/:id/voters/:vid" element={<EditVoter />} />
             <Route path="ballots/profile" element={<EditAdminProfile />} />
           </Route>
-          <Route path="voter" element={<VoterLayout />}>
+          <Route
+            path="voter"
+            element={
+              <ProtectedRoute>
+                <VoterLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="vote" />} />
             <Route path="vote" element={<VotingArea />} />
           </Route>
