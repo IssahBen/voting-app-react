@@ -56,7 +56,13 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
       {ballotStatus === "inactive" ? <InactiveBallotMessage /> : ""}
       <div className="w-full h-full grid grid-cols-2   gap-x-0.5 ">
         {candidates.map((candidate) => {
-          return <Candidate candidate={candidate} key={candidate.id} />;
+          return (
+            <Candidate
+              candidate={candidate}
+              GetBallotInfo={GetBallotInfo}
+              key={candidate.id}
+            />
+          );
         })}
       </div>
     </div>

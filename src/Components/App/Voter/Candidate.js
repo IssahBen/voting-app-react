@@ -3,7 +3,7 @@ import defaultpic from "../../../images/profile-pic.png";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useData } from "../../../Context/DataContext";
-export function Candidate({ candidate }) {
+export function Candidate({ candidate, GetBallotInfo }) {
   const navigate = useNavigate();
   const { setSuccessMessage, setErrorMessage, setInfoMessage } = useData();
   async function Vote(candidateId) {
@@ -28,13 +28,13 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
       }
       if (data.message) {
         setSuccessMessage(data.message);
-        navigate(0);
+        GetBallotInfo();
       }
       if (data.info) {
         setInfoMessage(data.info);
       }
     } catch (error) {
-      alert("There was an error Voting");
+      setErrorMessage("There was an error Voting");
     } finally {
     }
   }
