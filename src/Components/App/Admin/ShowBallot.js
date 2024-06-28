@@ -100,7 +100,11 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
   return (
     <div className="w-full h-full">
       <Header title={currentBallot.name} />
-      {candidates.length === 0 && !isLoading ? <EmptyCandidateMessage /> : ""}
+      {candidates.length === 0 && !isLoading ? (
+        <EmptyCandidateMessage id={id} />
+      ) : (
+        ""
+      )}
       {isLoading ? <Spinner /> : ""}
       {!isLoading && candidates.length !== 0 ? (
         <Candidates size={candidates.length} id={id} />
@@ -133,13 +137,16 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
   );
 }
 
-function EmptyCandidateMessage() {
+function EmptyCandidateMessage({ id }) {
   return (
     <div className="flex pulse flex-col items-center w-full mt-10">
       <p className="w-42 font-bold text-2xl text-blue-950 text-center">
         You seem to have no Candidates
       </p>
-      <NavLink to="/admin/create" className=" rounded-full p-2 bg-red-500">
+      <NavLink
+        to={`/admin/ballots/${id}/create`}
+        className=" rounded-full p-2 bg-red-500"
+      >
         + Add
       </NavLink>
     </div>
