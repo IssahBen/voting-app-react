@@ -60,13 +60,7 @@ export default function DesktopMenu({ status, setStatus }) {
             logout
           </a>
         ) : (
-          <a
-            href="#projects"
-            className={`hover:text-pink-500 `}
-            onClick={(e) => setStatus("validate")}
-          >
-            Check ELigibility
-          </a>
+          ""
         )}
         <div className="mx-2 group-hover:border-b group-hover:border-blue-50 group-hover:shake "></div>
       </div>

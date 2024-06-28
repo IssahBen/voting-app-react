@@ -108,18 +108,7 @@ export default function MobileMenu({ status, setStatus }) {
             Logout
           </a>
         ) : (
-          <a
-            href="#projects"
-            onClick={(e) => {
-              setStatus("validate");
-              HandleClick();
-            }}
-            className={`${
-              status === "validationg" ? "hidden " : ""
-            }hover:text-pink-500 hover:shake   btn `}
-          >
-            Check ELigibility?
-          </a>
+          ""
         )}
       </div>
     </div>
