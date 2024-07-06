@@ -31,7 +31,7 @@ function DataProvider({ children }) {
   async function createUser(obj) {
     try {
       setIsLoading(true);
-      alert(JSON.stringify(obj));
+
       const res = await fetch(
         `
 https://wevotepushapi-0e45561659e2.herokuapp.com
@@ -69,7 +69,6 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
   }
   async function destroySession() {
     try {
-      alert([email, token]);
       const res = await fetch(
         `
 https://wevotepushapi-0e45561659e2.herokuapp.com
