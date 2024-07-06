@@ -35,7 +35,7 @@ export default function DesktopMenu({ status, setStatus }) {
           <NavLink to="admin" className={`hover:text-pink-500 `}>
             Admin
           </NavLink>
-        ) : loggedIn && role === "voter" ? (
+        ) : loggedIn && role === "vote" ? (
           <NavLink to="voter" className={`hover:text-pink-500 `}>
             Voter
           </NavLink>

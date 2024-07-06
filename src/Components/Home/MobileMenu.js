@@ -77,7 +77,7 @@ export default function MobileMenu({ status, setStatus }) {
         ) : loggedIn && role === "voter" ? (
           <NavLink
             onClick={HandleClick()}
-            to="voter"
+            to="vote"
             className={`hover:text-pink-500 hover:shake  btn `}
           >
             Voter
