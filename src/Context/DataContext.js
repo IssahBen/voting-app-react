@@ -51,6 +51,8 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
 
         if (data.user.role === "voter") {
           localStorage.setItem("ballotId", data.ballotId);
+          setEmail(data.user.email);
+          setToken(data.token);
         }
 
         return data.user.role;
@@ -495,6 +497,9 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
         setLoggedIn(true);
         if (data.user.role === "voter") {
           localStorage.setItem("ballotId", data.ballotId);
+          setRole(data.user.role);
+          setEmail(data.user.email);
+          setToken(data.token);
         }
         return data.user.role;
       } else {

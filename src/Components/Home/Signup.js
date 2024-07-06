@@ -32,9 +32,6 @@ function Signup({ setStatus }) {
 
     const status = await createUser(obj);
 
-    console.log(status);
-    console.log(5);
-
     if (status === "voter") navigate("/voter/vote");
     if (status === "official") navigate("/admin");
   }
