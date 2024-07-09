@@ -15,6 +15,7 @@ import CreateVoter from "./Components/App/Admin/CreateVoter";
 import EditVoter from "./Components/App/Admin/EditVoter";
 import EditAdminProfile from "./Components/App/Admin/EditAdminProfile";
 import ProtectedRoute from "./Components/Home/ProtectedRoute";
+import PageNotFound from "./Components/App/Messages/PageNotFound";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
             <Route index element={<Navigate replace to="vote" />} />
             <Route path="vote" element={<VotingArea />} />
           </Route>
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </DataProvider>
