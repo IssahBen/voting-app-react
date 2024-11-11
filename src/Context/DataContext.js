@@ -61,7 +61,7 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
         return "error";
       }
     } catch (error) {
-      setErrorMessage("There was an error loading data..");
+      setErrorMessage("Server offline");
       return "error";
     } finally {
       setIsLoading(false);
@@ -506,8 +506,8 @@ https://wevotepushapi-0e45561659e2.herokuapp.com
         return "error";
       }
     } catch (error) {
-      console.error(error);
-      setErrorMessage("there was an error loading data..");
+      
+      setErrorMessage("Server Offline");
       return "error";
     } finally {
       setIsLoading(false);
